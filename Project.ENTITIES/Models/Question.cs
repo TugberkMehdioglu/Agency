@@ -11,7 +11,7 @@ namespace Project.ENTITIES.Models
         public string Text { get; set; } = null!;
         public bool IsItAnswered { get; set; }
 
-        public int ParentQuestionId { get; set; }
+        public int? ParentQuestionId { get; set; }
         public int SurveyId { get; set; }
         public int GroupId { get; set; }
 
