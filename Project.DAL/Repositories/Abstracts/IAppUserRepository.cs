@@ -10,6 +10,10 @@ namespace Project.DAL.Repositories.Abstracts
 {
     public interface IAppUserRepository : IRepository<AppUser>
     {
+        public SignInManager<AppUser> SignInManager { get; }
+        public UserManager<AppUser> UserManager { get; }
         new Task<IEnumerable<IdentityError>?> AddAsync(AppUser entity);
+        public Task<AppUser> FindByEmailViaIdentity(string email);
+        public Task<SignInResult> PasswordSignInAsync(AppUser appUser, string password, bool rememberMe, bool lockoutOnFailure);
     }
 }

@@ -20,6 +20,9 @@ namespace Project.DAL.Repositories.Concretes
             _signInManager = signInManager;
         }
 
+        public SignInManager<AppUser> SignInManager { get { return _signInManager; } }
+        public UserManager<AppUser> UserManager { get { return _userManager; } }
+
         public override async Task<IEnumerable<IdentityError>?> AddAsync(AppUser entity)
         {
             IdentityResult result = await _userManager.CreateAsync(entity, entity.PasswordHash);
@@ -27,6 +30,16 @@ namespace Project.DAL.Repositories.Concretes
 
             await _signInManager.SignInAsync(entity, true);
             return null;
+        }
+
+        public async Task<AppUser> FindByEmailViaIdentity(string email)
+        {
+            return await _userManager.FindByEmailAsync(email);
+        }
+
+        public async Task<SignInResult> PasswordSignInAsync(AppUser appUser, string password, bool rememberMe, bool lockoutOnFailure)
+        {
+            return await _signInManager.PasswordSignInAsync(appUser, password, rememberMe, lockoutOnFailure);
         }
     }
 }

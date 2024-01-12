@@ -1,0 +1,48 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger col-sm-12 col-md-8 offset-md-2 col-lg-4 mx-lg-auto" style="padding:20px; border-radius:10px;"></div>
+
+<div class="row border border-2 p-3" style="border-radius:20px;">
+    <div class="col-sm-12 col-md-6 offset-md-3 col-lg-3 mx-lg-auto">
+
+        <div class="text-center mb-4">
+            <h3>Giriş Yap</h3>
+        </div>
+
+        <form method="post" class="text-center">
+
+            <div class="form-floating mb-3">
+                <input class="form-control" style="border-radius:30px;" placeholder="mailiniz@gmail.com" asp-for="Email" />
+                <label class="col-form-label" asp-for="Email"></label>
+                <span asp-validation-for="Email" class="text-danger text-start" style="font-weight:bold;"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control" style="border-radius:30px;" placeholder="***" asp-for="Password" />
+                <label class="col-form-label" asp-for="Password"></label>
+                <span asp-validation-for="Password" class="text-danger" style="font-weight:bold;"></span>
+            </div>
+
+            <div class="text-start">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="RememberMe" />
+                    <label class="form-check-label" asp-for="RememberMe"></label>
+                    <span asp-validation-for="RememberMe" class="text-danger"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-success mt-3 w-50" style="border-radius:20px;">Giriş Yap</button>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial"></partial>
+}
