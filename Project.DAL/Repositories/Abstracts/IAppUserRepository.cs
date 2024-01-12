@@ -1,4 +1,5 @@
-﻿using Project.ENTITIES.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using Project.ENTITIES.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Project.DAL.Repositories.Abstracts
 {
     public interface IAppUserRepository : IRepository<AppUser>
     {
-
+        new Task<IEnumerable<IdentityError>?> AddAsync(AppUser entity);
     }
 }
