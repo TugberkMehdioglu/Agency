@@ -1,7 +1,124 @@
-﻿
+﻿@model List<SurveyViewModel>
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Creater area'daki index action'ı'</h1>
+@if (TempData["success"] != null)
+{
+    <div class="container col-sm-12 col-md-10 offset-md-1 col-lg-6 mx-lg-auto">
+        <partial name="_AlertSuccessPartial" model=@(TempData["success"]!.ToString())></partial>
+    </div>
+}
+else if (TempData["fail"] != null)
+{
+    <div class="container col-sm-12 col-md-10 offset-md-1 col-lg-6 mx-lg-auto">
+        <partial name="_AlertWarningPartial" model=@(TempData["fail"]!.ToString())></partial>
+    </div>
+}
 
+<div asp-validation-summary="ModelOnly" class="alert alert-danger col-sm-12 col-md-10 offset-md-1 col-lg-6 mx-lg-auto" style="padding:20px; border-radius:10px;"></div>
+
+<div class="row border border-2 p-3" style="border-radius:20px;">
+    <div class="col-sm-12 col-md-12 col-lg-9 mx-lg-auto">
+
+        <div class="text-center mb-4">
+            <h3>Anketler</h3>
+        </div>
+
+        @if(Model.Count > 0)
+        {
+            <div class="table-responsive">
+                <table class="table table-hover" id="myTable">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Ad</th>
+                            <th class="text-center" colspan="3">
+                                <a class="btn btn-outline-success" style="border-radius:20px;" asp-area="Creater" asp-controller="Survey" asp-action="AddSurvey">Anket Oluştur</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (SurveyViewModel item in Model)
+                        {
+                            <tr class="align-middle">
+                                <td class="text-center">@item.Name</td>
+                                <td class="text-end">
+                                    <a class="btn btn-outline-primary" style="border-radius:20px;">Soru Ekle</a>
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-outline-warning" style="border-radius:20px;" asp-area="Creater" asp-controller="Survey" asp-action="UpdateSurvey" asp-route-id="@item.Id">Güncelle</a>
+                                </td>
+                                <td class="text-start">
+                                    <a class="btn btn-outline-danger" style="border-radius:20px;" id="deleteSurvey" data-id="@item.Id" data-name="@item.Name" data-bs-toggle="modal" data-bs-target="#modal5">Sil</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            
+        }
+        else
+        {
+            <div class="text-center mt-2">
+                <h5>Henüz anket oluşturulmadı.</h5>
+                <a class="btn btn-outline-success" style="border-radius:20px;" asp-area="Creater" asp-controller="Survey" asp-action="AddSurvey">Anket Oluştur</a>
+            </div>
+        }
+
+
+
+    </div>
+</div>
+
+
+@*------------MODAL------------*@
+<div class="modal fade" id="modal5" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Anket silinsin mi?</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Kapat</button>
+                <button type="submit" class="btn btn-danger" id="deleteSurveyButton" data-bs-dismiss="modal">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*------------MODAL------------*@
+
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial"></partial>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#myTable").on("click", "#deleteSurvey", function () {
+
+                let name = $(this).data("name");
+                let modalBodyText = name + " anketini silmek istediğinize emin misiniz?";
+                $(".modal-body").text(modalBodyText);
+
+                let id = $(this).data("id");
+
+                $("#deleteSurveyButton").off("click");
+                //$("#deleteSurveyButton").off("click") kullanarak tüm click olaylarını kaldırıyoruz.
+
+                $("#deleteSurveyButton").click(function () {
+
+                    window.location.href = "/Creater/Survey/DeleteSurvey/" + id;
+                });
+            });
+        });
+
+    </script>
+}

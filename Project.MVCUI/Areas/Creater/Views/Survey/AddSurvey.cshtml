@@ -1,0 +1,37 @@
+﻿@model SurveyViewModel
+
+@{
+    ViewData["Title"] = "AddSurvey";
+}
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger col-sm-12 col-md-10 offset-md-1 col-lg-6 mx-lg-auto" style="padding:20px; border-radius:10px;"></div>
+
+<div class="row border border-2 p-3" style="border-radius:20px;">
+    <div class="col-sm-12 col-md-6 offset-md-3 col-lg-3 mx-lg-auto">
+
+        <div class="text-center mb-4">
+            <h3>Anket Oluştur</h3>
+        </div>
+
+        
+        <form method="post" class="text-center">
+
+            <div class="form-floating mb-3">
+                <input class="form-control" style="border-radius:30px;" placeholder="" asp-for="Name" />
+                <label class="col-form-label" asp-for="Name"></label>
+                <span asp-validation-for="Name" class="text-danger text-start" style="font-weight:bold;"></span>
+            </div>
+
+
+            <button type="submit" class="btn btn-outline-success mt-3 w-50" style="border-radius:20px;">Anket Oluştur</button>
+
+        </form>
+
+
+    </div>
+</div>
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial"></partial>
+}
