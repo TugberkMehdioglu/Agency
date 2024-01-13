@@ -324,9 +324,9 @@ namespace Project.DAL.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "fe46265e-fca0-46dc-ac36-2202cbbb6224", "Creater", "CREATER" },
-                    { 2, "c942004f-f420-424f-9120-8f3413dab7fa", "Responder", "RESPONDER" },
-                    { 3, "44271c75-bcb1-431f-bc56-37b5af0fba00", "Analyzer", "ANALYZER" }
+                    { 1, "2be28faa-2cb3-4cec-a235-3b15a9545025", "Creater", "CREATER" },
+                    { 2, "87fc6601-bd37-48b7-84a8-330e125f4e6a", "Responder", "RESPONDER" },
+                    { 3, "c62b87a8-e29d-41fb-a339-997413f7abd5", "Analyzer", "ANALYZER" }
                 });
 
             migrationBuilder.InsertData(
@@ -334,9 +334,19 @@ namespace Project.DAL.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedDate", "DeletedDate", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "ModifiedDate", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "SurName", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "1642044c-efdb-4732-ac25-d7b232545145", new DateTime(2024, 1, 13, 14, 41, 27, 657, DateTimeKind.Local).AddTicks(2945), null, "creater@gmail.com", true, true, null, null, "Kemal", "CREATER@GMAIL.COM", "CREATER", "AQAAAAEAACcQAAAAEMqiXMNZTYrtEIg9xmmtNWQGnFoAL/ATT2ytqNST0jxvxzu+ci4Pqu6UESXKi7eXgQ==", "5312292928", true, "d75c937e-dffc-4714-8202-66fb8ca9da4d", (byte)1, "Akcan", false, "Creater" },
-                    { 2, 0, "6b46741e-0e52-4af4-bdf3-0be2ba22e074", new DateTime(2024, 1, 13, 14, 41, 27, 657, DateTimeKind.Local).AddTicks(2961), null, "responder@gmail.com", true, true, null, null, "Sefa", "RESPONDER@GMAIL.COM", "RESPONDER", "AQAAAAEAACcQAAAAEICt4MX1rQkGjlZjgYAfxTEbvrTshD+YP/s1g5qa3YD/wayRVt7N20MQXqYb6NsJVQ==", "5446340539", true, "30bca897-cae3-4209-ae6f-f96baf1fc78f", (byte)1, "Er", false, "Responder" },
-                    { 3, 0, "2ebe44ea-50aa-4a73-9ad0-002c6dc99358", new DateTime(2024, 1, 13, 14, 41, 27, 657, DateTimeKind.Local).AddTicks(2985), null, "analyzer@gmail.com", true, true, null, null, "Bora", "ANALYZER@GMAIL.COM", "ANALYZER", "AQAAAAEAACcQAAAAEDRuO+ZNibn1eeUZYA8qvqtzMnC9W8Vfa/UL4cWhVm5C3I5e7nvDgZjtRb2kSetpFw==", "5446340539", true, "630785be-3325-4841-b9c9-9c652b030fb1", (byte)1, "Öz", false, "Analyzer" }
+                    { 1, 0, "73613a5f-2b87-44c4-83bc-f5967f09914a", new DateTime(2024, 1, 13, 15, 2, 38, 726, DateTimeKind.Local).AddTicks(2269), null, "creater@gmail.com", true, true, null, null, "Kemal", "CREATER@GMAIL.COM", "CREATER", "AQAAAAEAACcQAAAAEJp8g+0vlvijEPS/eXRkUJgLpkKNP0g/m9PmH3+hfjhjZzfiP6b7WDqsbyx0R1KDpw==", "5312292928", true, "a9ed692b-883b-48ca-bb3e-982e7a78a942", (byte)1, "Akcan", false, "Creater" },
+                    { 2, 0, "268df1e1-b6fb-43b4-8f4f-07e5550e800f", new DateTime(2024, 1, 13, 15, 2, 38, 726, DateTimeKind.Local).AddTicks(2288), null, "responder@gmail.com", true, true, null, null, "Sefa", "RESPONDER@GMAIL.COM", "RESPONDER", "AQAAAAEAACcQAAAAEBCIt4mt7QNF1RS3cg6U/g9YD3j17V7tW1k3XBvI0ghhDRPv8BtwIJxT9XG7fzVPlA==", "5446340539", true, "dfd1f08f-3e8b-42c6-ba87-079bf060e181", (byte)1, "Er", false, "Responder" },
+                    { 3, 0, "acc64544-021d-42a5-a2c5-3b751b249606", new DateTime(2024, 1, 13, 15, 2, 38, 726, DateTimeKind.Local).AddTicks(2304), null, "analyzer@gmail.com", true, true, null, null, "Bora", "ANALYZER@GMAIL.COM", "ANALYZER", "AQAAAAEAACcQAAAAEKDeXyF7wWto4Z12Dny73y7TdG7oXBbeKs8Tq+FE6X68ArnCHb9xmv66JMoyibZ33A==", "5446340539", true, "c9680716-eb2e-4e2c-816f-cfb9e6052354", (byte)1, "Öz", false, "Analyzer" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Groups",
+                columns: new[] { "Id", "Code", "CreatedDate", "DeletedDate", "ModifiedDate", "Score", "Status" },
+                values: new object[,]
+                {
+                    { 1, "A", new DateTime(2024, 1, 13, 15, 2, 38, 732, DateTimeKind.Local).AddTicks(2057), null, null, (byte)10, (byte)1 },
+                    { 2, "B", new DateTime(2024, 1, 13, 15, 2, 38, 732, DateTimeKind.Local).AddTicks(2062), null, null, (byte)6, (byte)1 },
+                    { 3, "C", new DateTime(2024, 1, 13, 15, 2, 38, 732, DateTimeKind.Local).AddTicks(2065), null, null, (byte)8, (byte)1 }
                 });
 
             migrationBuilder.InsertData(
