@@ -9,7 +9,6 @@ namespace Project.ENTITIES.Models
     public class Survey : BaseEntity
     {
         public string Name { get; set; } = null!;
-        public decimal? Score { get; set; }
 
 
         //AppUser foreignKey for creator of survey

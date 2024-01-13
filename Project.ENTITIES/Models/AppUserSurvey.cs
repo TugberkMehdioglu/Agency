@@ -10,6 +10,8 @@ namespace Project.ENTITIES.Models
     {
         public int? AppUserId { get; set; }
         public int? SurveyId { get; set; }
+        public decimal? Score { get; set; }
+
 
         //Navigation Properties
         public AppUser? AppUser { get; set; }

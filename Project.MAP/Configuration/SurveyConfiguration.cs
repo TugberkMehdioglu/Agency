@@ -15,7 +15,6 @@ namespace Project.MAP.Configuration
             base.Configure(builder);
 
             builder.HasMany(x => x.Questions).WithOne(x => x.Survey).HasForeignKey(x => x.SurveyId);
-            builder.Property(x => x.Score).HasPrecision(4, 2);
         }
     }
 }

@@ -12,7 +12,7 @@ using Project.DAL.ContextClasses;
 namespace Project.DAL.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20240113120238_Initial")]
+    [Migration("20240113162314_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,21 +57,21 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "2be28faa-2cb3-4cec-a235-3b15a9545025",
+                            ConcurrencyStamp = "72ab2fdc-ccef-48ac-afaa-792a59b4def4",
                             Name = "Creater",
                             NormalizedName = "CREATER"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "87fc6601-bd37-48b7-84a8-330e125f4e6a",
+                            ConcurrencyStamp = "a5446599-8814-4548-b787-fdf97c9ec582",
                             Name = "Responder",
                             NormalizedName = "RESPONDER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "c62b87a8-e29d-41fb-a339-997413f7abd5",
+                            ConcurrencyStamp = "9aab544f-8b8c-49d4-a47b-c541907b9cfa",
                             Name = "Analyzer",
                             NormalizedName = "ANALYZER"
                         });
@@ -323,18 +323,18 @@ namespace Project.DAL.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "73613a5f-2b87-44c4-83bc-f5967f09914a",
-                            CreatedDate = new DateTime(2024, 1, 13, 15, 2, 38, 726, DateTimeKind.Local).AddTicks(2269),
+                            ConcurrencyStamp = "16b91bde-e080-4411-86b3-55751e04781b",
+                            CreatedDate = new DateTime(2024, 1, 13, 19, 23, 13, 874, DateTimeKind.Local).AddTicks(1977),
                             Email = "creater@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Kemal",
                             NormalizedEmail = "CREATER@GMAIL.COM",
                             NormalizedUserName = "CREATER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJp8g+0vlvijEPS/eXRkUJgLpkKNP0g/m9PmH3+hfjhjZzfiP6b7WDqsbyx0R1KDpw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO34mg7dbz05RDio02wubySwZ/K1CilCZzniv05fbpIjpUwOMp/YeU8TqsUUJLRZ5w==",
                             PhoneNumber = "5312292928",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "a9ed692b-883b-48ca-bb3e-982e7a78a942",
+                            SecurityStamp = "ce1efc02-03af-4d10-91a0-3564fde38766",
                             Status = (byte)1,
                             SurName = "Akcan",
                             TwoFactorEnabled = false,
@@ -344,18 +344,18 @@ namespace Project.DAL.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "268df1e1-b6fb-43b4-8f4f-07e5550e800f",
-                            CreatedDate = new DateTime(2024, 1, 13, 15, 2, 38, 726, DateTimeKind.Local).AddTicks(2288),
+                            ConcurrencyStamp = "48fe6ebc-4c05-4055-afe3-e3a5f336872b",
+                            CreatedDate = new DateTime(2024, 1, 13, 19, 23, 13, 874, DateTimeKind.Local).AddTicks(2010),
                             Email = "responder@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Sefa",
                             NormalizedEmail = "RESPONDER@GMAIL.COM",
                             NormalizedUserName = "RESPONDER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBCIt4mt7QNF1RS3cg6U/g9YD3j17V7tW1k3XBvI0ghhDRPv8BtwIJxT9XG7fzVPlA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKHM9LDJaqTWrVK45vBPH6UhEMtfT8pyxQAn44rR+FphU291uyyoWePIFyi5up5K3A==",
                             PhoneNumber = "5446340539",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "dfd1f08f-3e8b-42c6-ba87-079bf060e181",
+                            SecurityStamp = "d4d2f153-0c9a-4eac-802d-e15ab9677cae",
                             Status = (byte)1,
                             SurName = "Er",
                             TwoFactorEnabled = false,
@@ -365,18 +365,18 @@ namespace Project.DAL.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "acc64544-021d-42a5-a2c5-3b751b249606",
-                            CreatedDate = new DateTime(2024, 1, 13, 15, 2, 38, 726, DateTimeKind.Local).AddTicks(2304),
+                            ConcurrencyStamp = "c37aa16c-4ae9-45e2-8972-3eb66a3bfc3d",
+                            CreatedDate = new DateTime(2024, 1, 13, 19, 23, 13, 874, DateTimeKind.Local).AddTicks(2028),
                             Email = "analyzer@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Bora",
                             NormalizedEmail = "ANALYZER@GMAIL.COM",
                             NormalizedUserName = "ANALYZER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKDeXyF7wWto4Z12Dny73y7TdG7oXBbeKs8Tq+FE6X68ArnCHb9xmv66JMoyibZ33A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIvkE+rPPTc/DrWZyKXRgwHkhs3tsiKLONs8LbAEhiaFIwQ4XPx7wHunQclFTXhPVw==",
                             PhoneNumber = "5446340539",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "c9680716-eb2e-4e2c-816f-cfb9e6052354",
+                            SecurityStamp = "33d62402-8473-48ec-bb45-d0cb650546a8",
                             Status = (byte)1,
                             SurName = "Öz",
                             TwoFactorEnabled = false,
@@ -428,6 +428,10 @@ namespace Project.DAL.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<decimal?>("Score")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("decimal(4,2)");
+
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
@@ -472,7 +476,7 @@ namespace Project.DAL.Migrations
                         {
                             Id = 1,
                             Code = "A",
-                            CreatedDate = new DateTime(2024, 1, 13, 15, 2, 38, 732, DateTimeKind.Local).AddTicks(2057),
+                            CreatedDate = new DateTime(2024, 1, 13, 19, 23, 13, 880, DateTimeKind.Local).AddTicks(8504),
                             Score = (byte)10,
                             Status = (byte)1
                         },
@@ -480,7 +484,7 @@ namespace Project.DAL.Migrations
                         {
                             Id = 2,
                             Code = "B",
-                            CreatedDate = new DateTime(2024, 1, 13, 15, 2, 38, 732, DateTimeKind.Local).AddTicks(2062),
+                            CreatedDate = new DateTime(2024, 1, 13, 19, 23, 13, 880, DateTimeKind.Local).AddTicks(8510),
                             Score = (byte)6,
                             Status = (byte)1
                         },
@@ -488,7 +492,7 @@ namespace Project.DAL.Migrations
                         {
                             Id = 3,
                             Code = "C",
-                            CreatedDate = new DateTime(2024, 1, 13, 15, 2, 38, 732, DateTimeKind.Local).AddTicks(2065),
+                            CreatedDate = new DateTime(2024, 1, 13, 19, 23, 13, 880, DateTimeKind.Local).AddTicks(8513),
                             Score = (byte)8,
                             Status = (byte)1
                         });
@@ -564,10 +568,6 @@ namespace Project.DAL.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("Score")
-                        .HasPrecision(4, 2)
-                        .HasColumnType("decimal(4,2)");
 
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
