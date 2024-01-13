@@ -13,7 +13,8 @@ namespace Project.DAL.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -27,7 +28,8 @@ namespace Project.DAL.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SurName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -78,7 +80,7 @@ namespace Project.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -99,7 +101,7 @@ namespace Project.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -121,7 +123,7 @@ namespace Project.DAL.Migrations
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -138,8 +140,8 @@ namespace Project.DAL.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -162,7 +164,7 @@ namespace Project.DAL.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -186,8 +188,7 @@ namespace Project.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Score = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: true),
-                    RespondingUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -202,6 +203,32 @@ namespace Project.DAL.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUserSurveys",
+                columns: table => new
+                {
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
+                    SurveyId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserSurveys", x => new { x.AppUserId, x.SurveyId });
+                    table.ForeignKey(
+                        name: "FK_AppUserSurveys_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_AppUserSurveys_Surveys_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "Surveys",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -249,7 +276,6 @@ namespace Project.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SelectedAnswer = table.Column<bool>(type: "bit", nullable: false),
                     QuestionId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -267,14 +293,40 @@ namespace Project.DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "AppUserAnswers",
+                columns: table => new
+                {
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
+                    AnswerId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserAnswers", x => new { x.AppUserId, x.AnswerId });
+                    table.ForeignKey(
+                        name: "FK_AppUserAnswers_Answers_AnswerId",
+                        column: x => x.AnswerId,
+                        principalTable: "Answers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_AppUserAnswers_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4d7b3bc1-f3aa-48ce-b587-5e7dc5553134", "9b5fed92-912a-4155-9d2f-116ee789b77d", "Responder", "RESPONDER" },
-                    { "4d7b3bc1-f3aa-48ce-b587-5e7dc5556263", "39ab76e8-e82b-41e0-a2e3-bb2c71ba4ef9", "Analyzer", "ANALYZER" },
-                    { "4d7b3bc1-f3aa-48ce-b587-5e7dc5557634", "9bf2253a-9182-45e0-9468-5a952045cc0c", "Creater", "CREATER" }
+                    { 1, "fe46265e-fca0-46dc-ac36-2202cbbb6224", "Creater", "CREATER" },
+                    { 2, "c942004f-f420-424f-9120-8f3413dab7fa", "Responder", "RESPONDER" },
+                    { 3, "44271c75-bcb1-431f-bc56-37b5af0fba00", "Analyzer", "ANALYZER" }
                 });
 
             migrationBuilder.InsertData(
@@ -282,30 +334,35 @@ namespace Project.DAL.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedDate", "DeletedDate", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "ModifiedDate", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "SurName", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "5c8defd5-91f2-4256-9f16-e7fa7546dec4", 0, "5208786c-e40e-4cc6-b743-0cf62c95b133", new DateTime(2024, 1, 12, 16, 16, 59, 97, DateTimeKind.Local).AddTicks(3601), null, "creater@gmail.com", true, true, null, null, "Kemal", "CREATER@GMAIL.COM", "CREATER", "AQAAAAEAACcQAAAAEGOlPo5gchGvaSMYDL6ZQ/QKK8X9tEz4V5atZKINf6cgapCuapFzRejkryht7mjvAA==", "5312292928", true, "0c77549a-90f3-4718-9e91-d5fab90e55b5", (byte)1, "Akcan", false, "Creater" },
-                    { "5c8defd5-91f2-4256-9f16-e7fa7546fec5", 0, "54f20558-8b05-4265-bf5b-205a00d2f0a8", new DateTime(2024, 1, 12, 16, 16, 59, 97, DateTimeKind.Local).AddTicks(3649), null, "responder@gmail.com", true, true, null, null, "Sefa", "RESPONDER@GMAIL.COM", "RESPONDER", "AQAAAAEAACcQAAAAEEiYuKq2NqImIYC6Vrepph71b+PyfhEaZVCmCi+H18FmrZTZ6EmczGRmIScLiCdN4Q==", "5446340539", true, "55d3d01c-9682-4ef6-8431-180ac45c9ca4", (byte)1, "Er", false, "Responder" },
-                    { "5c8defd5-91f2-4256-9f16-e7fa7546gec6", 0, "236d10a1-bc8f-426c-b2ab-32f5772eaefd", new DateTime(2024, 1, 12, 16, 16, 59, 97, DateTimeKind.Local).AddTicks(3672), null, "analyzer@gmail.com", true, true, null, null, "Bora", "ANALYZER@GMAIL.COM", "ANALYZER", "AQAAAAEAACcQAAAAEGNjwxkPGJvZKnAfHDz7ZE57/EdoINhvaKQ5YqN6FjVhHhDEkrIGTzdyfS1XMFASZA==", "5446340539", true, "54c41e32-bbc5-437a-9ffc-dff990ec59e6", (byte)1, "Öz", false, "Analyzer" }
+                    { 1, 0, "1642044c-efdb-4732-ac25-d7b232545145", new DateTime(2024, 1, 13, 14, 41, 27, 657, DateTimeKind.Local).AddTicks(2945), null, "creater@gmail.com", true, true, null, null, "Kemal", "CREATER@GMAIL.COM", "CREATER", "AQAAAAEAACcQAAAAEMqiXMNZTYrtEIg9xmmtNWQGnFoAL/ATT2ytqNST0jxvxzu+ci4Pqu6UESXKi7eXgQ==", "5312292928", true, "d75c937e-dffc-4714-8202-66fb8ca9da4d", (byte)1, "Akcan", false, "Creater" },
+                    { 2, 0, "6b46741e-0e52-4af4-bdf3-0be2ba22e074", new DateTime(2024, 1, 13, 14, 41, 27, 657, DateTimeKind.Local).AddTicks(2961), null, "responder@gmail.com", true, true, null, null, "Sefa", "RESPONDER@GMAIL.COM", "RESPONDER", "AQAAAAEAACcQAAAAEICt4MX1rQkGjlZjgYAfxTEbvrTshD+YP/s1g5qa3YD/wayRVt7N20MQXqYb6NsJVQ==", "5446340539", true, "30bca897-cae3-4209-ae6f-f96baf1fc78f", (byte)1, "Er", false, "Responder" },
+                    { 3, 0, "2ebe44ea-50aa-4a73-9ad0-002c6dc99358", new DateTime(2024, 1, 13, 14, 41, 27, 657, DateTimeKind.Local).AddTicks(2985), null, "analyzer@gmail.com", true, true, null, null, "Bora", "ANALYZER@GMAIL.COM", "ANALYZER", "AQAAAAEAACcQAAAAEDRuO+ZNibn1eeUZYA8qvqtzMnC9W8Vfa/UL4cWhVm5C3I5e7nvDgZjtRb2kSetpFw==", "5446340539", true, "630785be-3325-4841-b9c9-9c652b030fb1", (byte)1, "Öz", false, "Analyzer" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "4d7b3bc1-f3aa-48ce-b587-5e7dc5557634", "5c8defd5-91f2-4256-9f16-e7fa7546dec4" });
+                values: new object[] { 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "4d7b3bc1-f3aa-48ce-b587-5e7dc5553134", "5c8defd5-91f2-4256-9f16-e7fa7546fec5" });
+                values: new object[] { 2, 2 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "4d7b3bc1-f3aa-48ce-b587-5e7dc5556263", "5c8defd5-91f2-4256-9f16-e7fa7546gec6" });
+                values: new object[] { 3, 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_QuestionId",
                 table: "Answers",
                 column: "QuestionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppUserAnswers_AnswerId",
+                table: "AppUserAnswers",
+                column: "AnswerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -370,7 +427,10 @@ namespace Project.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Answers");
+                name: "AppUserAnswers");
+
+            migrationBuilder.DropTable(
+                name: "AppUserSurveys");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -388,10 +448,13 @@ namespace Project.DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Questions");
+                name: "Answers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Questions");
 
             migrationBuilder.DropTable(
                 name: "Groups");

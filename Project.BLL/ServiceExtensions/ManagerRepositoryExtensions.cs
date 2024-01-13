@@ -21,6 +21,8 @@ namespace Project.BLL.ServiceExtensions
             services.AddScoped<IGroupManager, GroupManager>();
             services.AddScoped<IQuestionManager, QuestionManager>();
             services.AddScoped<ISurveyManager, Surveymanager>();
+            services.AddScoped<IAppUserAnswerManager, AppUserAnswerManager>();
+            services.AddScoped<IAppUserSurveyManager, AppUserSurveyManager>();
 
 
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
@@ -29,6 +31,8 @@ namespace Project.BLL.ServiceExtensions
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<IQuestionRepository, QuestionRepository>();
             services.AddScoped<ISurveyRepository, SurveyRepository>();
+            services.AddScoped<IAppUserAnswerRepository, AppUserAnswerRepository>();
+            services.AddScoped<IAppUserSurveyRepository, AppUserSurveyRepository>();
 
             return services;
         }

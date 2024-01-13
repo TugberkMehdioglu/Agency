@@ -21,7 +21,7 @@ namespace Project.BLL.ServiceExtensions
                 options.Name = "LookAtMe";
             });
 
-            services.AddIdentity<AppUser, IdentityRole>(options =>
+            services.AddIdentity<AppUser, IdentityRole<int>>(options =>
             {
                 options.User.RequireUniqueEmail = true;
 

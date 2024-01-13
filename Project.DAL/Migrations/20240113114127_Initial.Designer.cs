@@ -12,7 +12,7 @@ using Project.DAL.ContextClasses;
 namespace Project.DAL.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20240112131659_Initial")]
+    [Migration("20240113114127_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,10 +24,13 @@ namespace Project.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -53,28 +56,28 @@ namespace Project.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4d7b3bc1-f3aa-48ce-b587-5e7dc5557634",
-                            ConcurrencyStamp = "9bf2253a-9182-45e0-9468-5a952045cc0c",
+                            Id = 1,
+                            ConcurrencyStamp = "fe46265e-fca0-46dc-ac36-2202cbbb6224",
                             Name = "Creater",
                             NormalizedName = "CREATER"
                         },
                         new
                         {
-                            Id = "4d7b3bc1-f3aa-48ce-b587-5e7dc5553134",
-                            ConcurrencyStamp = "9b5fed92-912a-4155-9d2f-116ee789b77d",
+                            Id = 2,
+                            ConcurrencyStamp = "c942004f-f420-424f-9120-8f3413dab7fa",
                             Name = "Responder",
                             NormalizedName = "RESPONDER"
                         },
                         new
                         {
-                            Id = "4d7b3bc1-f3aa-48ce-b587-5e7dc5556263",
-                            ConcurrencyStamp = "39ab76e8-e82b-41e0-a2e3-bb2c71ba4ef9",
+                            Id = 3,
+                            ConcurrencyStamp = "44271c75-bcb1-431f-bc56-37b5af0fba00",
                             Name = "Analyzer",
                             NormalizedName = "ANALYZER"
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,9 +91,8 @@ namespace Project.DAL.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -99,7 +101,7 @@ namespace Project.DAL.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,9 +115,8 @@ namespace Project.DAL.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -124,7 +125,7 @@ namespace Project.DAL.Migrations
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -135,9 +136,8 @@ namespace Project.DAL.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -146,13 +146,13 @@ namespace Project.DAL.Migrations
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -163,25 +163,25 @@ namespace Project.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "5c8defd5-91f2-4256-9f16-e7fa7546dec4",
-                            RoleId = "4d7b3bc1-f3aa-48ce-b587-5e7dc5557634"
+                            UserId = 1,
+                            RoleId = 1
                         },
                         new
                         {
-                            UserId = "5c8defd5-91f2-4256-9f16-e7fa7546fec5",
-                            RoleId = "4d7b3bc1-f3aa-48ce-b587-5e7dc5553134"
+                            UserId = 2,
+                            RoleId = 2
                         },
                         new
                         {
-                            UserId = "5c8defd5-91f2-4256-9f16-e7fa7546gec6",
-                            RoleId = "4d7b3bc1-f3aa-48ce-b587-5e7dc5556263"
+                            UserId = 3,
+                            RoleId = 3
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -217,9 +217,6 @@ namespace Project.DAL.Migrations
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("SelectedAnswer")
-                        .HasColumnType("bit");
-
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
@@ -236,8 +233,11 @@ namespace Project.DAL.Migrations
 
             modelBuilder.Entity("Project.ENTITIES.Models.AppUser", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -321,20 +321,20 @@ namespace Project.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5c8defd5-91f2-4256-9f16-e7fa7546dec4",
+                            Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5208786c-e40e-4cc6-b743-0cf62c95b133",
-                            CreatedDate = new DateTime(2024, 1, 12, 16, 16, 59, 97, DateTimeKind.Local).AddTicks(3601),
+                            ConcurrencyStamp = "1642044c-efdb-4732-ac25-d7b232545145",
+                            CreatedDate = new DateTime(2024, 1, 13, 14, 41, 27, 657, DateTimeKind.Local).AddTicks(2945),
                             Email = "creater@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Kemal",
                             NormalizedEmail = "CREATER@GMAIL.COM",
                             NormalizedUserName = "CREATER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGOlPo5gchGvaSMYDL6ZQ/QKK8X9tEz4V5atZKINf6cgapCuapFzRejkryht7mjvAA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMqiXMNZTYrtEIg9xmmtNWQGnFoAL/ATT2ytqNST0jxvxzu+ci4Pqu6UESXKi7eXgQ==",
                             PhoneNumber = "5312292928",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "0c77549a-90f3-4718-9e91-d5fab90e55b5",
+                            SecurityStamp = "d75c937e-dffc-4714-8202-66fb8ca9da4d",
                             Status = (byte)1,
                             SurName = "Akcan",
                             TwoFactorEnabled = false,
@@ -342,20 +342,20 @@ namespace Project.DAL.Migrations
                         },
                         new
                         {
-                            Id = "5c8defd5-91f2-4256-9f16-e7fa7546fec5",
+                            Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "54f20558-8b05-4265-bf5b-205a00d2f0a8",
-                            CreatedDate = new DateTime(2024, 1, 12, 16, 16, 59, 97, DateTimeKind.Local).AddTicks(3649),
+                            ConcurrencyStamp = "6b46741e-0e52-4af4-bdf3-0be2ba22e074",
+                            CreatedDate = new DateTime(2024, 1, 13, 14, 41, 27, 657, DateTimeKind.Local).AddTicks(2961),
                             Email = "responder@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Sefa",
                             NormalizedEmail = "RESPONDER@GMAIL.COM",
                             NormalizedUserName = "RESPONDER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEiYuKq2NqImIYC6Vrepph71b+PyfhEaZVCmCi+H18FmrZTZ6EmczGRmIScLiCdN4Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEICt4MX1rQkGjlZjgYAfxTEbvrTshD+YP/s1g5qa3YD/wayRVt7N20MQXqYb6NsJVQ==",
                             PhoneNumber = "5446340539",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "55d3d01c-9682-4ef6-8431-180ac45c9ca4",
+                            SecurityStamp = "30bca897-cae3-4209-ae6f-f96baf1fc78f",
                             Status = (byte)1,
                             SurName = "Er",
                             TwoFactorEnabled = false,
@@ -363,25 +363,77 @@ namespace Project.DAL.Migrations
                         },
                         new
                         {
-                            Id = "5c8defd5-91f2-4256-9f16-e7fa7546gec6",
+                            Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "236d10a1-bc8f-426c-b2ab-32f5772eaefd",
-                            CreatedDate = new DateTime(2024, 1, 12, 16, 16, 59, 97, DateTimeKind.Local).AddTicks(3672),
+                            ConcurrencyStamp = "2ebe44ea-50aa-4a73-9ad0-002c6dc99358",
+                            CreatedDate = new DateTime(2024, 1, 13, 14, 41, 27, 657, DateTimeKind.Local).AddTicks(2985),
                             Email = "analyzer@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Bora",
                             NormalizedEmail = "ANALYZER@GMAIL.COM",
                             NormalizedUserName = "ANALYZER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGNjwxkPGJvZKnAfHDz7ZE57/EdoINhvaKQ5YqN6FjVhHhDEkrIGTzdyfS1XMFASZA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDRuO+ZNibn1eeUZYA8qvqtzMnC9W8Vfa/UL4cWhVm5C3I5e7nvDgZjtRb2kSetpFw==",
                             PhoneNumber = "5446340539",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "54c41e32-bbc5-437a-9ffc-dff990ec59e6",
+                            SecurityStamp = "630785be-3325-4841-b9c9-9c652b030fb1",
                             Status = (byte)1,
                             SurName = "Öz",
                             TwoFactorEnabled = false,
                             UserName = "Analyzer"
                         });
+                });
+
+            modelBuilder.Entity("Project.ENTITIES.Models.AppUserAnswer", b =>
+                {
+                    b.Property<int?>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AnswerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte>("Status")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("AppUserId", "AnswerId");
+
+                    b.HasIndex("AnswerId");
+
+                    b.ToTable("AppUserAnswers");
+                });
+
+            modelBuilder.Entity("Project.ENTITIES.Models.AppUserSurvey", b =>
+                {
+                    b.Property<int?>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SurveyId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte>("Status")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("AppUserId", "SurveyId");
+
+                    b.ToTable("AppUserSurveys");
                 });
 
             modelBuilder.Entity("Project.ENTITIES.Models.Group", b =>
@@ -471,9 +523,8 @@ namespace Project.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -486,9 +537,6 @@ namespace Project.DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RespondingUser")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Score")
@@ -505,16 +553,16 @@ namespace Project.DAL.Migrations
                     b.ToTable("Surveys");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.HasOne("Project.ENTITIES.Models.AppUser", null)
                         .WithMany()
@@ -523,7 +571,7 @@ namespace Project.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.HasOne("Project.ENTITIES.Models.AppUser", null)
                         .WithMany()
@@ -532,9 +580,9 @@ namespace Project.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -547,7 +595,7 @@ namespace Project.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.HasOne("Project.ENTITIES.Models.AppUser", null)
                         .WithMany()
@@ -565,6 +613,44 @@ namespace Project.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Question");
+                });
+
+            modelBuilder.Entity("Project.ENTITIES.Models.AppUserAnswer", b =>
+                {
+                    b.HasOne("Project.ENTITIES.Models.Answer", "Answer")
+                        .WithMany("AppUserAnswers")
+                        .HasForeignKey("AnswerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Project.ENTITIES.Models.AppUser", "AppUser")
+                        .WithMany("AppUserAnswers")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Answer");
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("Project.ENTITIES.Models.AppUserSurvey", b =>
+                {
+                    b.HasOne("Project.ENTITIES.Models.AppUser", "AppUser")
+                        .WithMany("AppUserSurveys")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Project.ENTITIES.Models.Survey", "Survey")
+                        .WithMany("AppUserSurveys")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Survey");
                 });
 
             modelBuilder.Entity("Project.ENTITIES.Models.Question", b =>
@@ -603,8 +689,17 @@ namespace Project.DAL.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("Project.ENTITIES.Models.Answer", b =>
+                {
+                    b.Navigation("AppUserAnswers");
+                });
+
             modelBuilder.Entity("Project.ENTITIES.Models.AppUser", b =>
                 {
+                    b.Navigation("AppUserAnswers");
+
+                    b.Navigation("AppUserSurveys");
+
                     b.Navigation("Surveys");
                 });
 
@@ -622,6 +717,8 @@ namespace Project.DAL.Migrations
 
             modelBuilder.Entity("Project.ENTITIES.Models.Survey", b =>
                 {
+                    b.Navigation("AppUserSurveys");
+
                     b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618

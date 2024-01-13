@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Models
 {
-    public class AppUser : IdentityUser, IEntity
+    public class AppUser : IdentityUser<int>, IEntity
     {
         public string Name { get; set; } = null!;
         public string SurName { get; set; } = null!;
@@ -27,6 +27,8 @@ namespace Project.ENTITIES.Models
 
 
         //Navigation Properties
-        public ICollection<Survey>? Surveys { get; set; }
+        public ICollection<AppUserSurvey>? AppUserSurveys { get; set; }//For responders
+        public ICollection<Survey>? Surveys { get; set; }//For creator of survey
+        public ICollection<AppUserAnswer>? AppUserAnswers { get; set; }
     }
 }

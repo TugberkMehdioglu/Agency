@@ -9,7 +9,7 @@ namespace Project.ENTITIES.Models
     public class Question : BaseEntity
     {
         public string Text { get; set; } = null!;
-        public bool IsItAnswered { get; set; }
+        public bool IsItAnswered { get; set; }//For score property on Survey entity.
 
         public int? ParentQuestionId { get; set; }
         public int SurveyId { get; set; }

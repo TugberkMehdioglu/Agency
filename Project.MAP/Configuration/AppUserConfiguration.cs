@@ -23,7 +23,7 @@ namespace Project.MAP.Configuration
             {
                 new()
                 {
-                    Id="5c8defd5-91f2-4256-9f16-e7fa7546dec4",
+                    Id=1,
                     SecurityStamp=Guid.NewGuid().ToString(),
                     UserName="Creater",
                     NormalizedUserName="CREATER",
@@ -41,7 +41,7 @@ namespace Project.MAP.Configuration
                 },
                 new()
                 {
-                    Id="5c8defd5-91f2-4256-9f16-e7fa7546fec5",
+                    Id=2,
                     SecurityStamp=Guid.NewGuid().ToString(),
                     UserName="Responder",
                     NormalizedUserName="RESPONDER",
@@ -59,7 +59,7 @@ namespace Project.MAP.Configuration
                 },
                 new()
                 {
-                    Id="5c8defd5-91f2-4256-9f16-e7fa7546gec6",
+                    Id=3,
                     SecurityStamp=Guid.NewGuid().ToString(),
                     UserName="Analyzer",
                     NormalizedUserName="ANALYZER",

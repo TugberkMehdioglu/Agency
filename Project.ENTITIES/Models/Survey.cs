@@ -11,12 +11,14 @@ namespace Project.ENTITIES.Models
         public string Name { get; set; } = null!;
         public decimal? Score { get; set; }
 
-        public string? RespondingUser { get; set; }
-        public string CreatedBy { get; set; } = null!;
+
+        //AppUser foreignKey for creator of survey
+        public int CreatedBy { get; set; }
 
 
         //Navigation Properties
-        public AppUser AppUser { get; set; } = null!;
+        public AppUser AppUser { get; set; } = null!;//AppUser foreignKey for creator of survey
+        public ICollection<AppUserSurvey>? AppUserSurveys { get; set; }//For responders
         public ICollection<Question>? Questions { get; set; }
     }
 }
