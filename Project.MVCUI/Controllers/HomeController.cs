@@ -55,5 +55,10 @@ namespace Project.MVCUI.Controllers
 
             return Redirect(returnUrl);
         }
+
+        public async Task Logout()
+        {
+            await _appUserManager.SignOutAsync();
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace Project.BLL.ManagerServices.Abstracts
         public Task<(IEnumerable<IdentityError>?, string?)> AddUserByIdentityAsync(AppUser entity);
         public Task<(string?, AppUser?)> FindByEmailViaIdentity(string email);
         public Task<string?> PasswordSignInAsync(AppUser appUser, string password, bool rememberMe, bool lockoutOnFailure);
+        public Task SignOutAsync();
     }
 }

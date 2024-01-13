@@ -15,5 +15,6 @@ namespace Project.DAL.Repositories.Abstracts
         new Task<IEnumerable<IdentityError>?> AddAsync(AppUser entity);
         public Task<AppUser> FindByEmailViaIdentity(string email);
         public Task<SignInResult> PasswordSignInAsync(AppUser appUser, string password, bool rememberMe, bool lockoutOnFailure);
+        public Task SignOutAsync();
     }
 }

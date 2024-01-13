@@ -38,6 +38,8 @@ namespace Project.BLL.ManagerServices.Concretes
             else return (null, appUser);
         }
 
+        public async Task SignOutAsync() => await _appUserRepository.SignOutAsync();
+
         public async Task<string?> PasswordSignInAsync(AppUser appUser, string password, bool rememberMe, bool lockoutOnFailure)
         {
             SignInResult result = await _appUserRepository.PasswordSignInAsync(appUser, password, rememberMe, lockoutOnFailure);

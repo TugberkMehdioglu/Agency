@@ -37,6 +37,8 @@ namespace Project.DAL.Repositories.Concretes
             return await _userManager.FindByEmailAsync(email);
         }
 
+        public async Task SignOutAsync() => await _signInManager.SignOutAsync();
+
         public async Task<SignInResult> PasswordSignInAsync(AppUser appUser, string password, bool rememberMe, bool lockoutOnFailure)
         {
             return await _signInManager.PasswordSignInAsync(appUser, password, rememberMe, lockoutOnFailure);
