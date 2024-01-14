@@ -33,8 +33,8 @@ else if (TempData["fail"] != null)
                     <thead>
                         <tr>
                             <th class="text-center">Ad</th>
-                            <th class="text-center" colspan="3">
-                                <a class="btn btn-outline-success" style="border-radius:20px;" asp-area="Creater" asp-controller="Survey" asp-action="AddSurvey">Anket Oluştur</a>
+                            <th class="text-center">
+                                <a class="btn btn-outline-success" style="border-radius:20px;" asp-area="Creator" asp-controller="Survey" asp-action="AddSurvey">Anket Oluştur</a>
                             </th>
                         </tr>
                     </thead>
@@ -43,13 +43,14 @@ else if (TempData["fail"] != null)
                         {
                             <tr class="align-middle">
                                 <td class="text-center">@item.Name</td>
-                                <td class="text-end">
-                                    <a class="btn btn-outline-primary" style="border-radius:20px;" asp-area="Creater" asp-controller="Survey" asp-action="AddQuestionToSurvey" asp-route-surveyId="@item.Id">Soru Ekle</a>
-                                </td>
                                 <td class="text-center">
-                                    <a class="btn btn-outline-warning" style="border-radius:20px;" asp-area="Creater" asp-controller="Survey" asp-action="UpdateSurvey" asp-route-id="@item.Id">Güncelle</a>
-                                </td>
-                                <td class="text-start">
+
+                                    <a class="btn btn-outline-success" style="border-radius:20px;" asp-area="Creater" asp-controller="Survey" asp-action="AddQuestionToSurvey" asp-route-surveyId="@item.Id">Soru Ekle</a>
+
+                                    <a class="btn btn-outline-primary mx-2" style="border-radius:20px;" asp-area="Creater" asp-controller="Survey" asp-action="SurveyDetail" asp-route-surveyId="@item.Id">Gözat</a>
+
+                                    <a class="btn btn-outline-warning mx-2" style="border-radius:20px;" asp-area="Creater" asp-controller="Survey" asp-action="UpdateSurvey" asp-route-id="@item.Id">Güncelle</a>
+
                                     <a class="btn btn-outline-danger" style="border-radius:20px;" id="deleteSurvey" data-id="@item.Id" data-name="@item.Name" data-bs-toggle="modal" data-bs-target="#modal5">Sil</a>
                                 </td>
                             </tr>

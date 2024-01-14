@@ -14,7 +14,7 @@ namespace Project.MAP.Configuration
         {
             base.Configure(builder);
 
-            builder.HasMany(x => x.ChilQuestions).WithOne(x => x.ParentQuestion).HasForeignKey(x => x.ParentQuestionId);
+            builder.HasMany(x => x.ChildQuestions).WithOne(x => x.ParentQuestion).HasForeignKey(x => x.ParentQuestionId);
             builder.HasMany(x => x.Answers).WithOne(x => x.Question).HasForeignKey(x => x.QuestionId);
         }
     }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Project.BLL.ManagerServices.Abstracts;
 using Project.ENTITIES.Enums;
@@ -13,7 +14,7 @@ namespace Project.MVCUI.Areas.Creater.Controllers
 {
     [Area("Creater")]
     [Route("[Area]/[Controller]/[Action]")]
-    [Authorize(Roles = "Creater")]
+    [Authorize(Roles = "Creator")]
     public class SurveyController : Controller
     {
         private readonly ISurveyManager _surveyManager;
@@ -40,6 +41,22 @@ namespace Project.MVCUI.Areas.Creater.Controllers
             }).ToListAsync();
 
             return View(surveyViewModels);
+        }
+
+        [HttpGet("{surveyId}")]
+        public async Task<IActionResult> SurveyDetail(int surveyId)
+        {
+            var (error, survey) = await _surveyManager.GetSurveyWithQuestionAndAnswerById(surveyId);
+
+            if (error != null)
+            {
+                TempData["fail"] = error;
+                return RedirectToAction(nameof(Index));
+            }
+
+            SurveyViewModel surveyViewModel = _mapper.Map<SurveyViewModel>(survey);
+
+            return View(surveyViewModel);
         }
 
         public IActionResult AddSurvey()
@@ -156,22 +173,26 @@ namespace Project.MVCUI.Areas.Creater.Controllers
         public async Task<IActionResult> AddQuestionToSurvey(QuestionViewModel request)
         {
             Question question = _mapper.Map<Question>(request);
+            question.ChildQuestions = null;
 
             string? result = await _questionManager.AddAsync(question);
-            if(result != null)
+            if (result != null)
             {
                 TempData["fail"] = result;
                 return RedirectToAction(nameof(Index));
             }
 
-            question.ChilQuestions = _mapper.Map<List<Question>>(request.ChildQuestions);
-
-            string? result2 = await _questionManager.AddRangeAsync(question.ChilQuestions);
-            if(result2 != null)
+            if(request.ChildQuestions != null && request.ChildQuestions.Count > 0)
             {
-                TempData["fail"] = result2;
-                return RedirectToAction(nameof(Index));
-            }
+                question.ChildQuestions = _mapper.Map<List<Question>>(request.ChildQuestions);
+
+                string? result2 = await _questionManager.AddRangeAsync(question.ChildQuestions);
+                if (result2 != null)
+                {
+                    TempData["fail"] = result2;
+                    return RedirectToAction(nameof(Index));
+                }
+            }          
 
             TempData["success"] = "Anket sorusu eklendi";
             return RedirectToAction(nameof(Index));

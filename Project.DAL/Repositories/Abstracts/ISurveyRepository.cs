@@ -9,6 +9,6 @@ namespace Project.DAL.Repositories.Abstracts
 {
     public interface ISurveyRepository : IRepository<Survey>
     {
-
+        public Task<Survey?> GetSurveyWithQuestionAndAnswerById(int surveyId);
     }
 }

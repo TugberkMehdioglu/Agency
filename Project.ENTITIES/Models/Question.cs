@@ -17,7 +17,7 @@ namespace Project.ENTITIES.Models
 
 
         //Navigation Properties
-        public ICollection<Question>? ChilQuestions { get; set; }
+        public ICollection<Question>? ChildQuestions { get; set; }
         public Question? ParentQuestion { get; set; }
         public Survey Survey { get; set; } = null!;
         public ICollection<Answer>? Answers { get; set; }

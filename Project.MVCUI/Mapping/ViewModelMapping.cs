@@ -10,6 +10,8 @@ namespace Project.MVCUI.Mapping
         {
             CreateMap<Question, QuestionViewModel>().ReverseMap();
             CreateMap<Answer, AnswerViewModel>().ReverseMap();
+            CreateMap<Survey, SurveyViewModel>().ReverseMap();
+            CreateMap<Group, GroupViewModel>().ReverseMap();
         }
     }
 }

@@ -11,10 +11,18 @@ namespace Project.BLL.ManagerServices.Concretes
 {
     public class Surveymanager : BaseManager<Survey>, ISurveyManager
     {
-        public Surveymanager(IRepository<Survey> repository) : base(repository)
+        private readonly ISurveyRepository _surveyRepository;
+        public Surveymanager(IRepository<Survey> repository, ISurveyRepository surveyRepository) : base(repository)
         {
+            _surveyRepository = surveyRepository;
         }
 
-        
+        public async Task<(string?, Survey?)> GetSurveyWithQuestionAndAnswerById(int surveyId)
+        {
+            Survey? survey = await _surveyRepository.GetSurveyWithQuestionAndAnswerById(surveyId);
+
+            if (survey == null) return ("Anket bulunamadı", null);
+            else return (null, survey);
+        }
     }
 }

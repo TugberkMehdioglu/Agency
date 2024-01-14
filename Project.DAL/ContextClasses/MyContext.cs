@@ -42,8 +42,8 @@ namespace Project.DAL.ContextClasses
             new IdentityRole<int>()
             {
                 Id = 1,
-                Name = "Creater",
-                NormalizedName = "CREATER",
+                Name = "Creator",
+                NormalizedName = "CREATOR",
                 ConcurrencyStamp = Guid.NewGuid().ToString()
             },
             new IdentityRole<int>()

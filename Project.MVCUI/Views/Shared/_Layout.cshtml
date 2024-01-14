@@ -13,7 +13,7 @@
 
     @{
         bool isAuthenticated = User.Identity!.IsAuthenticated;
-        bool isCreator = User.IsInRole("Creater");
+        bool isCreator = User.IsInRole("Creator");
     }
 
     <header>
@@ -29,6 +29,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/Home">Ana Sayfa</a>
                         </li>
+                        @if (isCreator)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Creater" asp-controller="Survey" asp-action="Index">Anketler</a>
+                            </li>
+                        }                       
                     </ul>
                     <ul class="navbar-nav align-items-center">
                         @if (!isAuthenticated)
@@ -47,7 +53,7 @@
                                 </button>
                                 <ul class="dropdown-menu" style="border-radius:20px;" aria-labelledby="dropdownMenu2">
                                     @if(isCreator){
-                                        <li><a class="dropdown-item" asp-area="Creater" asp-controller="Survey" asp-action="Index">Anket Sayfası</a></li>
+                                        <li><a class="dropdown-item" asp-area="Creater" asp-controller="Survey" asp-action="Index">Anketler</a></li>
                                     }
                                     
                                     <li><button class="dropdown-item" type="button">Another action</button></li>

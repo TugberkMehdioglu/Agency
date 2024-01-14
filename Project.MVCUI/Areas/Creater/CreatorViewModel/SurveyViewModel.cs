@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Project.ENTITIES.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project.MVCUI.Areas.Creater.CreatorViewModel
 {
@@ -14,5 +15,8 @@ namespace Project.MVCUI.Areas.Creater.CreatorViewModel
 
         //AppUser foreignKey for creator of survey
         public int? CreatedBy { get; set; }
+
+        //Navigation Properties
+        public ICollection<QuestionViewModel>? Questions { get; set; }
     }
 }

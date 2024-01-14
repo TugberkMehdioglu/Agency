@@ -9,6 +9,6 @@ namespace Project.BLL.ManagerServices.Abstracts
 {
     public interface ISurveyManager : IManager<Survey>
     {
-
+        public Task<(string?, Survey?)> GetSurveyWithQuestionAndAnswerById(int surveyId);
     }
 }

@@ -1,0 +1,55 @@
+﻿@model SurveyViewModel
+
+@{
+    ViewData["Title"] = "SurveyDetail";
+}
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger col-sm-12 col-md-10 offset-md-1 col-lg-6 mx-lg-auto" style="padding:20px; border-radius:10px;"></div>
+
+<div class="row border border-2 p-3" style="border-radius:20px;">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 mx-lg-auto">
+
+        <div class="text-center mb-4">
+            <h3>@Model.Name Anket Detayı</h3>
+        </div>
+
+        @if(Model.Questions == null || Model.Questions.Count < 1)
+        {
+            <h5>Anketenizde henüz soru bulunmamakta, soru eklemek için <a asp-area="Creater" asp-controller="Survey" asp-action="AddQuestionToSurvey" asp-route-surveyId="@Model.Id">tıklayınız...</a></h5>
+        }
+        else
+        {
+
+            @foreach (QuestionViewModel question in Model.Questions.Where(x=>x.ParentQuestionId == null))
+            {
+                <div class="border border-3" style="border-radius:20px;">
+
+                    <h3>@question.Text  - Soru grubu => @question.Group.Code Puanı => @question.Group.Score</h3>
+                    <hr>
+
+                    @foreach (AnswerViewModel answer in question.Answers)
+                    {
+                        <h5>@answer.Text</h5>
+                    }
+
+                    @if(question.ChildQuestions != null && question.ChildQuestions.Count > 0)
+                    {
+                        @foreach (QuestionViewModel childQuestion in question.ChildQuestions)
+                        {
+                            <h3>@childQuestion.Text  - Soru grubu => @childQuestion.Group.Code Puanı => @childQuestion.Group.Score </h3>
+                            <hr />
+
+                            @foreach (AnswerViewModel childAnswer in childQuestion.Answers)
+                            {
+                                <h5>@childAnswer.Text</h5>
+                            }
+                        }
+                    }
+
+                </div>
+            }
+            
+        }
+
+    </div>
+</div>
