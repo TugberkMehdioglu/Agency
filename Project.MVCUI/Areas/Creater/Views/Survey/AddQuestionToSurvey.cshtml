@@ -1,0 +1,125 @@
+﻿@model QuestionViewModel
+
+@{
+    ViewData["Title"] = "AddQuestionToSurvey";
+}
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger col-sm-12 col-md-10 offset-md-1 col-lg-6 mx-lg-auto" style="padding:20px; border-radius:10px;"></div>
+
+<div class="row border border-2 p-3" style="border-radius:20px;">
+    <div class="col-sm-12 col-md-6 offset-md-3 col-lg-3 mx-lg-auto">
+
+        <div class="text-center mb-4">
+            <h3>Anket Sorusu Oluştur</h3>
+        </div>
+
+
+        <form method="post" class="text-center">
+
+            <input type="hidden" asp-for="SurveyId" />
+
+            <div class="form-floating mb-3">
+                <input class="form-control" style="border-radius:30px;" placeholder="" asp-for="Text"/>
+                <label class="col-form-label" asp-for="Text"></label>
+                <span asp-validation-for="Text" class="text-danger text-start" style="font-weight:bold;"></span>
+            </div>
+
+
+            @for (int i = 0; i <= 1; i++)
+            {
+                <div class="form-floating mb-3">
+                    <input class="form-control" style="border-radius:30px;" placeholder="" asp-for="@Model.Answers[i].Text"/>
+                    <label class="col-form-label" asp-for="@Model.Answers[i].Text">Cevap @(i + 1)</label>
+                    <span asp-validation-for="@Model.Answers[i].Text" class="text-danger text-start" style="font-weight:bold;"></span>
+                </div>
+            }
+
+
+
+            <div class="form-floating mb-3" id="answersContainer">
+                <select class="form-select" id="floatingSelect" asp-for="GroupId" asp-items="@TempData["groupSelectList"] as SelectList" style="border-radius:20px;">
+                    <option value="">Grup seçiniz</option>
+                </select>
+                <label for="floatingSelect">Sorunun grubunu Seçiniz</label>
+                <span asp-validation-for="GroupId" class="text-danger" style="font-weight:bold;"></span>
+            </div>
+
+
+            <button type="button" class="btn btn-outline-primary mt-4" style="border-radius:20px;" onclick="addChildQuestion()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-dotted" viewBox="0 0 16 16">
+                    <path d="M8 0q-.264 0-.523.017l.064.998a7 7 0 0 1 .918 0l.064-.998A8 8 0 0 0 8 0M6.44.152q-.52.104-1.012.27l.321.948q.43-.147.884-.237L6.44.153zm4.132.271a8 8 0 0 0-1.011-.27l-.194.98q.453.09.884.237zm1.873.925a8 8 0 0 0-.906-.524l-.443.896q.413.205.793.459zM4.46.824q-.471.233-.905.524l.556.83a7 7 0 0 1 .793-.458zM2.725 1.985q-.394.346-.74.74l.752.66q.303-.345.648-.648zm11.29.74a8 8 0 0 0-.74-.74l-.66.752q.346.303.648.648zm1.161 1.735a8 8 0 0 0-.524-.905l-.83.556q.254.38.458.793l.896-.443zM1.348 3.555q-.292.433-.524.906l.896.443q.205-.413.459-.793zM.423 5.428a8 8 0 0 0-.27 1.011l.98.194q.09-.453.237-.884zM15.848 6.44a8 8 0 0 0-.27-1.012l-.948.321q.147.43.237.884zM.017 7.477a8 8 0 0 0 0 1.046l.998-.064a7 7 0 0 1 0-.918zM16 8a8 8 0 0 0-.017-.523l-.998.064a7 7 0 0 1 0 .918l.998.064A8 8 0 0 0 16 8M.152 9.56q.104.52.27 1.012l.948-.321a7 7 0 0 1-.237-.884l-.98.194zm15.425 1.012q.168-.493.27-1.011l-.98-.194q-.09.453-.237.884zM.824 11.54a8 8 0 0 0 .524.905l.83-.556a7 7 0 0 1-.458-.793zm13.828.905q.292-.434.524-.906l-.896-.443q-.205.413-.459.793zm-12.667.83q.346.394.74.74l.66-.752a7 7 0 0 1-.648-.648zm11.29.74q.394-.346.74-.74l-.752-.66q-.302.346-.648.648zm-1.735 1.161q.471-.233.905-.524l-.556-.83a7 7 0 0 1-.793.458zm-7.985-.524q.434.292.906.524l.443-.896a7 7 0 0 1-.793-.459zm1.873.925q.493.168 1.011.27l.194-.98a7 7 0 0 1-.884-.237zm4.132.271a8 8 0 0 0 1.012-.27l-.321-.948a7 7 0 0 1-.884.237l.194.98zm-2.083.135a8 8 0 0 0 1.046 0l-.064-.998a7 7 0 0 1-.918 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                </svg>
+                Cevaplanırsa bunuda sor
+            </button>
+
+
+            <button type="submit" class="btn btn-outline-success mt-2 w-50" style="border-radius:20px;">Soruyu Oluştur</button>
+
+        </form>
+
+
+    </div>
+</div>
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial"></partial>
+
+    <script type="text/javascript">
+
+        let groupSelectList = @Html.Raw(Json.Serialize(TempData["groupSelectList"]));
+        let surveyId = @Model.SurveyId;
+        let questionsCount = 0;
+
+        function addChildQuestion(){
+
+            let newChildQuestionHtml = `
+             <h4 class="text-center mt-4">${questionsCount + 1}. Alt Soru</h4>
+
+             <input type="hidden" data-val="true" data-val-required="The SurveyId field is required." id="SurveyId" name="ChildQuestions[${questionsCount}].SurveyId" value="${surveyId}">
+
+             <div class="form-floating mb-3 mt-3">
+                 <input class="form-control" style="border-radius:30px;" placeholder="" type="text" name="ChildQuestions[${questionsCount}].Text" required minlength="2" maxlength="350"/>
+                 <label class="col-form-label" for="ChildQuestions[${questionsCount}].Text">Alt Soru</label>
+                 <span asp-validation-for="ChildQuestions[${questionsCount}].Text" class="text-danger text-start" style="font-weight:bold;" data-valmsg-for="ChildQuestions[${questionsCount}].Text" data-valmsg-replace="true"></span>
+             </div>
+
+             <div class="form-floating mb-3">
+                 <input class="form-control" style="border-radius:30px;" placeholder="" type="text" name="ChildQuestions[${questionsCount}].Answers[0].Text" required minlength="3" maxlength="350"/>
+                 <label class="col-form-label" for="ChildQuestions[${questionsCount}].Answers[0].Text">Cevap 1</label>
+                 <span asp-validation-for="ChildQuestions[${questionsCount}].Answers[0].Text" class="text-danger text-start" style="font-weight:bold;" data-valmsg-for="ChildQuestions[${questionsCount}].Answers[0].Text" data-valmsg-replace="true"></span>
+             </div>
+
+             <div class="form-floating mb-3">
+                 <input class="form-control" style="border-radius:30px;" placeholder="" type="text" name="ChildQuestions[${questionsCount}].Answers[1].Text" required minlength="3" maxlength="350"/>
+                 <label class="col-form-label" for="ChildQuestions[${questionsCount}].Answers[1].Text">Cevap 2</label>
+                 <span asp-validation-for="ChildQuestions[${questionsCount}].Answers[1].Text" class="text-danger text-start" style="font-weight:bold;" data-valmsg-for="ChildQuestions[${questionsCount}].Answers[1].Text" data-valmsg-replace="true"></span>
+             </div>
+
+             <div class="form-floating mb-3">
+                <select class="form-select" id="ChildQuestions[${questionsCount}].GroupId" style="border-radius:20px;" required data-val="true" data-val-required="Grup zorunludur" name="ChildQuestions[${questionsCount}].GroupId">
+             `;
+
+
+             let selectHtml = '<option value="">Grup seçiniz</option>';
+
+             for(let i = 0; i < groupSelectList.length; i++){
+
+                selectHtml += '<option value="'+ groupSelectList[i].value +'">'+ groupSelectList[i].text +'</option>';
+             }           
+
+             selectHtml += '</select>';
+
+             selectHtml += '<label for="ChildQuestions['+ questionsCount +'].GroupId">Sorunun grubunu Seçiniz</label><span class="text-danger field-validation-valid" style="font-weight:bold;" data-valmsg-for="ChildQuestions['+ questionsCount +'].GroupId" data-valmsg-replace="true"></span>';
+
+             selectHtml += '</div>';
+
+             newChildQuestionHtml += selectHtml;
+
+             questionsCount++;
+
+            $("#answersContainer").append(newChildQuestionHtml);
+        };
+
+    </script>
+}

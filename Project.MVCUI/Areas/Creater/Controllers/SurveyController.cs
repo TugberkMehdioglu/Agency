@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Project.BLL.ManagerServices.Abstracts;
 using Project.ENTITIES.Enums;
@@ -16,11 +18,17 @@ namespace Project.MVCUI.Areas.Creater.Controllers
     {
         private readonly ISurveyManager _surveyManager;
         private readonly IAppUserManager _appUserManager;
+        private readonly IGroupManager _groupManager;
+        private readonly IQuestionManager _questionManager;
+        private readonly IMapper _mapper;
 
-        public SurveyController(ISurveyManager surveyManager, IAppUserManager appUserManager)
+        public SurveyController(ISurveyManager surveyManager, IAppUserManager appUserManager, IGroupManager groupManager, IQuestionManager questionManager, IMapper mapper)
         {
             _surveyManager = surveyManager;
             _appUserManager = appUserManager;
+            _groupManager = groupManager;
+            _questionManager = questionManager;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -123,6 +131,49 @@ namespace Project.MVCUI.Areas.Creater.Controllers
             }
 
             TempData["success"] = "Anket silindi";
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet("{surveyId}")]
+        public async Task<IActionResult> AddQuestionToSurvey(int surveyId)
+        {
+            List<GroupViewModel> groupViewModels = await _groupManager.GetActives().Select(x => new GroupViewModel()
+            {
+                Id = x.Id,
+                Code = x.Code,
+                Score = x.Score
+            }).ToListAsync();
+
+            TempData["groupSelectList"] = new SelectList(groupViewModels, nameof(GroupViewModel.Id), nameof(GroupViewModel.Code));
+
+            QuestionViewModel questionViewModel = new QuestionViewModel() { SurveyId = surveyId };
+
+            return View(model: questionViewModel);
+        }
+
+        [HttpPost("{surveyId}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddQuestionToSurvey(QuestionViewModel request)
+        {
+            Question question = _mapper.Map<Question>(request);
+
+            string? result = await _questionManager.AddAsync(question);
+            if(result != null)
+            {
+                TempData["fail"] = result;
+                return RedirectToAction(nameof(Index));
+            }
+
+            question.ChilQuestions = _mapper.Map<List<Question>>(request.ChildQuestions);
+
+            string? result2 = await _questionManager.AddRangeAsync(question.ChilQuestions);
+            if(result2 != null)
+            {
+                TempData["fail"] = result2;
+                return RedirectToAction(nameof(Index));
+            }
+
+            TempData["success"] = "Anket sorusu eklendi";
             return RedirectToAction(nameof(Index));
         }
     }

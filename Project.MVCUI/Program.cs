@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Localization;
 using Project.BLL.ServiceExtensions;
+using System.Globalization;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +35,20 @@ builder.Services.AddSession(options =>
     options.Cookie.Name = "ImHereToo";
 });
 
+builder.Services.Configure<RequestLocalizationOptions>(configuration =>
+{
+    List<CultureInfo> supportedCultures = new List<CultureInfo>()
+    {
+        new CultureInfo("tr-TR")
+    };
+
+    configuration.DefaultRequestCulture = new RequestCulture("tr-TR");
+    configuration.SupportedCultures = supportedCultures;
+    configuration.SupportedUICultures = supportedCultures;
+});
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,6 +59,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseRequestLocalization();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
