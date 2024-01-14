@@ -45,5 +45,12 @@ namespace Project.MVCUI.Areas.Responder.Controllers
 
             return View(surveyViewModel);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SolveSurvey(SurveyViewModel request)
+        {
+            return View();
+        }
     }
 }
