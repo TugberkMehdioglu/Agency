@@ -13,6 +13,10 @@
             <h3>@Model.Name Anket Detayı</h3>
         </div>
 
+        @{
+            int questionCount = 1;
+        }
+
         @if(Model.Questions == null || Model.Questions.Count < 1)
         {
             <h5>Anketenizde henüz soru bulunmamakta, soru eklemek için <a asp-area="Creater" asp-controller="Survey" asp-action="AddQuestionToSurvey" asp-route-surveyId="@Model.Id">tıklayınız...</a></h5>
@@ -22,31 +26,46 @@
 
             @foreach (QuestionViewModel question in Model.Questions.Where(x=>x.ParentQuestionId == null))
             {
-                <div class="border border-3" style="border-radius:20px;">
+                <div class="border border-3 p-3 text-center shadow mb-3" style="border-radius:20px;">
 
-                    <h3>@question.Text  - Soru grubu => @question.Group.Code Puanı => @question.Group.Score</h3>
-                    <hr>
+                    <h3>@(questionCount))  @question.Text</h3>
+                    
 
                     @foreach (AnswerViewModel answer in question.Answers)
                     {
                         <h5>@answer.Text</h5>
                     }
 
+                    <p>Soru grubu: <span class="text-primary fw-bolder">@question.Group.Code</span>  Puanı: <span class="text-primary fw-bolder">@question.Group.Score</span></p>
+                    
+
                     @if(question.ChildQuestions != null && question.ChildQuestions.Count > 0)
                     {
+                        <hr>
+                        <h5 class="mb-3 text-success">Yukarıdaki soru cevaplandığında açılacak sorular</h5>
+
+                        int childQuestionCount = 1;
+
                         @foreach (QuestionViewModel childQuestion in question.ChildQuestions)
                         {
-                            <h3>@childQuestion.Text  - Soru grubu => @childQuestion.Group.Code Puanı => @childQuestion.Group.Score </h3>
-                            <hr />
+                            <h3>@(childQuestionCount)) @childQuestion.Text</h3>
+                            
 
                             @foreach (AnswerViewModel childAnswer in childQuestion.Answers)
                             {
                                 <h5>@childAnswer.Text</h5>
                             }
+
+                            <p>Soru grubu: <span class="text-primary fw-bolder">@childQuestion.Group.Code</span>  Puanı: <span class="text-primary fw-bolder">@childQuestion.Group.Score</span></p>
+                            <hr />
+
+                            ++childQuestionCount;
                         }
                     }
 
                 </div>
+
+                questionCount++;
             }
             
         }
