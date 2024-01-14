@@ -13,10 +13,8 @@
     <Folder Include="Areas\Analyzer\Views\" />
     <Folder Include="Areas\Creater\Data\" />
     <Folder Include="Areas\Creater\Models\" />
-    <Folder Include="Areas\Responder\Controllers\" />
     <Folder Include="Areas\Responder\Data\" />
     <Folder Include="Areas\Responder\Models\" />
-    <Folder Include="Areas\Responder\Views\" />
     <Folder Include="Models\" />
   </ItemGroup>
 

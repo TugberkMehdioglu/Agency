@@ -20,7 +20,9 @@ namespace Project.MVCUI.Areas.Creater.CreatorViewModel
         [Required(ErrorMessage = "{0} zorunludur")]
         public int GroupId { get; set; }
 
-        
+        public int? AnswrId { get; set; }//For /Responder/Survey/SolveSurvey
+
+
         //Navigation Properties
         public List<QuestionViewModel>? ChildQuestions { get; set; }
         public QuestionViewModel? ParentQuestion { get; set; }
