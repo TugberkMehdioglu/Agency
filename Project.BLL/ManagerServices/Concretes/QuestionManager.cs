@@ -11,10 +11,12 @@ namespace Project.BLL.ManagerServices.Concretes
 {
     public class QuestionManager : BaseManager<Question>, IQuestionManager
     {
-        public QuestionManager(IRepository<Question> repository) : base(repository)
+        private readonly IQuestionRepository _questionRepository;
+        public QuestionManager(IRepository<Question> repository, IQuestionRepository questionRepository) : base(repository)
         {
+            _questionRepository = questionRepository;
         }
 
-
+        public async Task<IQueryable<Question>> GetQuestionsWithGroupAsync() => await _questionRepository.GetQuestionsWithGroupAsync();
     }
 }

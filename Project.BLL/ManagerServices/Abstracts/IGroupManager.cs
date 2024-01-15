@@ -9,6 +9,6 @@ namespace Project.BLL.ManagerServices.Abstracts
 {
     public interface IGroupManager : IManager<Group>
     {
-
+        public Task<IQueryable<Group>> GetGroupsWithQuestions();
     }
 }

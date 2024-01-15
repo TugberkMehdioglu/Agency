@@ -1,5 +1,7 @@
-﻿using Project.DAL.ContextClasses;
+﻿using Microsoft.EntityFrameworkCore;
+using Project.DAL.ContextClasses;
 using Project.DAL.Repositories.Abstracts;
+using Project.ENTITIES.Enums;
 using Project.ENTITIES.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,6 @@ namespace Project.DAL.Repositories.Concretes
         {
         }
 
-
+        public async Task<IQueryable<Group>> GetGroupsWithQuestions() => _context.Groups.Where(x => x.Status != DataStatus.Deleted).Include(x => x.Questions);
     }
 }

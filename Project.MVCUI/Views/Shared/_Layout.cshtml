@@ -15,6 +15,7 @@
         bool isAuthenticated = User.Identity!.IsAuthenticated;
         bool isCreator = User.IsInRole("Creator");
         bool isResponder = User.IsInRole("Responder");
+        bool isAnalyzer = User.IsInRole("Analyzer");
     }
 
     <header>
@@ -42,6 +43,12 @@
                                 <a class="nav-link text-dark" asp-area="Responder" asp-controller="Survey" asp-action="Index">Anketler</a>
                             </li>
                         }
+                        else if (isAnalyzer)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Analyzer" asp-controller="Analyze" asp-action="Index">Analiz</a>
+                            </li>
+                        }
                     </ul>
                     <ul class="navbar-nav align-items-center">
                         @if (!isAuthenticated)
@@ -66,9 +73,11 @@
                                     {
                                         <li><a class="dropdown-item" asp-area="Responder" asp-controller="Survey" asp-action="Index">Anketler</a></li>
                                     }
+                                    else if (isAnalyzer)
+                                    {
+                                        <li><a class="dropdown-item" asp-area="Analyzer" asp-controller="Analyze" asp-action="Index">Analiz</a></li>
+                                    }
 
-                                    <li><button class="dropdown-item" type="button">Another action</button></li>
-                                    <li><button class="dropdown-item" type="button">Something else here</button></li>
                                     <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Logout" asp-route-returnUrl="/Home">Çıkış Yap</a></li>
                                 </ul>
                             </li>

@@ -1,0 +1,69 @@
+﻿@model List<GroupViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger col-sm-12 col-md-10 offset-md-1 col-lg-6 mx-lg-auto" style="padding:20px; border-radius:10px;"></div>
+
+<div class="row border border-2 p-3" style="border-radius:20px;">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 mx-lg-auto">
+
+        <div class="text-center mb-4">
+            <h3>Analiz</h3>
+        </div>
+
+        <div>
+            <h5 class="text-center text-success">Gruplara göre soruların dağılımı</h5>
+            <canvas id="myChart"></canvas>
+            <canvas id="myChart2" class="mt-5"></canvas>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script type="text/javascript">
+
+        const ctx = document.getElementById('myChart');
+        let groupCodes = @Html.Raw(Json.Serialize(ViewBag.GroupCodes));
+        let groupCodeCount = @Html.Raw(Json.Serialize(ViewBag.GroupCodeCount));
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: groupCodes,
+                datasets: [{
+                    label: 'Sayımı kapat',
+                    data: groupCodeCount,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('myChart2');
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: groupCodes,
+                datasets: [{
+                    label: 'Adet',
+                    data: groupCodeCount,
+                }]
+            },
+        });
+
+
+    </script>
+}

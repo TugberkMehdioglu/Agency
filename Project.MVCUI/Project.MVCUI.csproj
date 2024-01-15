@@ -7,10 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Analyzer\Controllers\" />
     <Folder Include="Areas\Analyzer\Data\" />
     <Folder Include="Areas\Analyzer\Models\" />
-    <Folder Include="Areas\Analyzer\Views\" />
     <Folder Include="Areas\Creater\Data\" />
     <Folder Include="Areas\Creater\Models\" />
     <Folder Include="Areas\Responder\Data\" />
