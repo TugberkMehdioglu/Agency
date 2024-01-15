@@ -15,6 +15,7 @@
     <Folder Include="Areas\Creater\Models\" />
     <Folder Include="Areas\Responder\Data\" />
     <Folder Include="Areas\Responder\Models\" />
+    <Folder Include="Areas\Responder\ViewModel\" />
     <Folder Include="Models\" />
   </ItemGroup>
 

@@ -15,6 +15,9 @@
 
         @{
             int questionCount = 1;
+            int answerCount = 1;
+            int childQuestionCount = 1;
+            int childAnswerCount = 100;
         }
 
         @if (Model.Questions == null || Model.Questions.Count < 1)
@@ -23,55 +26,60 @@
         }
         else
         {
+
             <form method="post" class="text-center">
 
-
-
-                @foreach (QuestionViewModel question in Model.Questions.Where(x => x.ParentQuestionId == null))
+                @for (int i = 0; i < Model.Questions.Count; i++)
                 {
-                    <div class="border border-3 p-3 text-center shadow mb-3" style="border-radius:20px;">
+                    if (Model.Questions[i].ParentQuestionId == null)
+                    {
+                        <div class="border border-3 p-3 text-center shadow mb-3" style="border-radius:20px;">
 
-                        <h3>@(questionCount))  @question.Text</h3>
+                            <h3>@(questionCount)) @Model.Questions[i].Text</h3>
 
-                        @for (int i = 0; i < question.Answers.Count; i++)
-                        {
-                            <div class="form-check d-flex justify-content-center my-3">
-                                <input class="form-check-input" type="radio" id="@question.Answers[i].Id" asp-for="@question.AnswrId" value="@question.Answers[i].Id">
-                                <label class="form-check-label ms-2" for="@question.Answers[i].Id">
-                                    @question.Answers[i].Text
-                                </label>
-                            </div>
-                        }
+                            <input type="hidden" asp-for="@Model.Questions[i].Id"/>
+                            <input type="hidden" asp-for="@Model.Id" />
 
-
-                        @if (question.ChildQuestions != null && question.ChildQuestions.Count > 0)
-                        {
-                            <hr>
-                            <h5 class="mb-3 text-success">Yukarıdaki soru cevaplandığında açılacak sorular</h5>
-
-                            int childQuestionCount = 1;
-
-                            @foreach (QuestionViewModel childQuestion in question.ChildQuestions)
+                            @for (int answer = 0; answer < Model.Questions[i].Answers.Count; answer++)
                             {
-                                <h3>@(childQuestionCount)) @childQuestion.Text</h3>
+                                <div class="form-check d-flex justify-content-center my-3">
+                                    <input class="form-check-input" type="radio" id="@answerCount" asp-for="@Model.Questions[i].AnswrId" value="@Model.Questions[i].Answers[answer].Id">
+                                    <label class="form-check-label ms-2" for="@answerCount">
+                                        @Model.Questions[i].Answers[answer].Text
+                                    </label>
+                                </div>
 
-                                @for (int i = 0; i < question.Answers.Count; i++)
-                                {
-                                    <div class="form-check d-flex justify-content-center my-3">
-                                        <input class="form-check-input" type="radio" id="@childQuestion.Answers[i].Id" asp-for="@childQuestion.AnswrId" value="@childQuestion.Answers[i].Id">
-                                        <label class="form-check-label ms-2" for="@childQuestion.Answers[i].Id">
-                                            @childQuestion.Answers[i].Text
-                                        </label>
-                                    </div>
-                                }
-
-                                ++childQuestionCount;
+                                answerCount++;
                             }
-                        }
 
-                    </div>
+                            @if(Model.Questions[i]!.ChildQuestions!.Count > 0)
+                            {
+                                <h5 class="mb-3 text-success">Yukarıdaki soruya bağlı sorular</h5>
 
-                    questionCount++;
+                                @for (int childQuestion = 0; childQuestion < Model.Questions[i]!.ChildQuestions!.Count; childQuestion++)
+                                {
+                                    <h3>@(childQuestionCount)) @Model.Questions[i].ChildQuestions![childQuestion].Text</h3>
+
+                                    <input type="hidden" asp-for="@Model.Questions[i].ChildQuestions![childQuestion].Id" />
+
+                                    @for (int childAnswer = 0; childAnswer < Model.Questions![i].ChildQuestions![childQuestion].Answers.Count; childAnswer++)
+                                    {
+                                        <div class="form-check d-flex justify-content-center my-3">
+                                            <input class="form-check-input" type="radio" id="@childAnswerCount" asp-for="@Model.Questions[i].ChildQuestions![childQuestion].AnswrId" value="@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id">
+                                            <label class="form-check-label ms-2" for="@childAnswerCount">
+                                                @Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Text
+                                            </label>
+                                        </div>
+
+                                        childAnswerCount++;
+                                    }
+                                }
+                            }
+
+                        </div>
+
+                        questionCount++;
+                    }                  
                 }
 
                 <button type="submit" class="btn btn-outline-success mt-2 w-50 mx-auto" style="border-radius:20px;">Anketi Çöz</button>
@@ -82,3 +90,5 @@
 
     </div>
 </div>
+
+
