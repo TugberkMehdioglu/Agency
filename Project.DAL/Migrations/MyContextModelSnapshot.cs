@@ -55,21 +55,21 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "fcc073c9-93ed-495a-a163-176a421ea997",
+                            ConcurrencyStamp = "4b30024e-cd2b-4f43-9708-c02adee10410",
                             Name = "Creator",
                             NormalizedName = "CREATOR"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "f104291b-c454-4c6d-b68b-3e77a9312d51",
+                            ConcurrencyStamp = "d4936249-5e1d-46fe-b62a-e8ef3e27fddd",
                             Name = "Responder",
                             NormalizedName = "RESPONDER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "ec89f101-2041-441c-84ef-647a97a1e3c9",
+                            ConcurrencyStamp = "b6bccd98-d3b8-4d75-a589-215a3bbe55d9",
                             Name = "Analyzer",
                             NormalizedName = "ANALYZER"
                         });
@@ -227,6 +227,120 @@ namespace Project.DAL.Migrations
                     b.HasIndex("QuestionId");
 
                     b.ToTable("Answers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1249),
+                            QuestionId = 1,
+                            Status = (byte)1,
+                            Text = "Çok memnunum"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1251),
+                            QuestionId = 1,
+                            Status = (byte)1,
+                            Text = "Memnun değilim"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1253),
+                            QuestionId = 2,
+                            Status = (byte)1,
+                            Text = "Mükemmel"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1254),
+                            QuestionId = 2,
+                            Status = (byte)1,
+                            Text = "İyileştirilebilir"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1255),
+                            QuestionId = 3,
+                            Status = (byte)1,
+                            Text = "Çok fazla fayda sağladım"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1257),
+                            QuestionId = 3,
+                            Status = (byte)1,
+                            Text = "Yeterli değil"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1258),
+                            QuestionId = 4,
+                            Status = (byte)1,
+                            Text = "Evet, tam olarak"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1259),
+                            QuestionId = 4,
+                            Status = (byte)1,
+                            Text = "Hayır, daha fazla esneklik istiyorum"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1260),
+                            QuestionId = 5,
+                            Status = (byte)1,
+                            Text = "Memnunum"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1262),
+                            QuestionId = 5,
+                            Status = (byte)1,
+                            Text = "Daha fazla geribildirim bekliyorum"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1263),
+                            QuestionId = 6,
+                            Status = (byte)1,
+                            Text = "Hayır, güvenli hissediyorum"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1264),
+                            QuestionId = 6,
+                            Status = (byte)1,
+                            Text = "Evet, iyileştirmeler yapılmalı"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1265),
+                            QuestionId = 7,
+                            Status = (byte)1,
+                            Text = "Yönetilebilir"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(1266),
+                            QuestionId = 7,
+                            Status = (byte)1,
+                            Text = "Yüksek"
+                        });
                 });
 
             modelBuilder.Entity("Project.ENTITIES.Models.AppUser", b =>
@@ -321,18 +435,18 @@ namespace Project.DAL.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6abd2693-069d-4c08-8dc7-a291ad3f8873",
-                            CreatedDate = new DateTime(2024, 1, 14, 20, 43, 43, 76, DateTimeKind.Local).AddTicks(8023),
+                            ConcurrencyStamp = "592efcfb-392f-4de3-bb20-db61a7123033",
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(9972),
                             Email = "creator@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Kemal",
                             NormalizedEmail = "CREATOR@GMAIL.COM",
                             NormalizedUserName = "CREATOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAECYo8984J323PnH+tWE4H8wat5IKNW0nTCKJ79nkL4KFdEC2Uy480iNFqM/R7L7UxQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELDR6PJsGBK4dDWRLBgH9X1mLcVVtrc8pKXYs1TqX/3beljvQDu5M2DMncxTgUsD4Q==",
                             PhoneNumber = "5312292928",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "1fa1efc2-68b3-454f-9066-017617511179",
+                            SecurityStamp = "545b31cf-8834-4f88-b9ed-c9ce1a6356f4",
                             Status = (byte)1,
                             SurName = "Akcan",
                             TwoFactorEnabled = false,
@@ -342,18 +456,18 @@ namespace Project.DAL.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6e3e7cbd-aafc-43da-b253-aa939dda8fb3",
-                            CreatedDate = new DateTime(2024, 1, 14, 20, 43, 43, 76, DateTimeKind.Local).AddTicks(8039),
+                            ConcurrencyStamp = "5e3f0248-cbcf-4f74-a75b-ed9679bb96c2",
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 932, DateTimeKind.Local).AddTicks(9984),
                             Email = "responder@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Sefa",
                             NormalizedEmail = "RESPONDER@GMAIL.COM",
                             NormalizedUserName = "RESPONDER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJxcoNQ9JEgudG/NDSf6zx5f82zN5lTNaISpAMRTW7V0FQyBqbm3P5z+AM9XpgF52w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMaF2QlpWU/c1kDaXqZaJ8oagm/IKqA/Mrq2WrwG1lgjzw7tcYbMY/R1X+elyWosEw==",
                             PhoneNumber = "5446340539",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "e5dd8113-dfcb-45dc-adba-a58ea6533050",
+                            SecurityStamp = "df54cbbe-6d19-49dc-ac6d-c76bfb8a097b",
                             Status = (byte)1,
                             SurName = "Er",
                             TwoFactorEnabled = false,
@@ -363,18 +477,18 @@ namespace Project.DAL.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b19d4eb4-04c9-4918-b7aa-c61df7b69abb",
-                            CreatedDate = new DateTime(2024, 1, 14, 20, 43, 43, 76, DateTimeKind.Local).AddTicks(8054),
+                            ConcurrencyStamp = "dc3c2c3c-767e-4749-a2b9-39c0d9d882e9",
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 933, DateTimeKind.Local).AddTicks(1),
                             Email = "analyzer@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Bora",
                             NormalizedEmail = "ANALYZER@GMAIL.COM",
                             NormalizedUserName = "ANALYZER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFAu0keEvXwFdsSJZO17iMhZVTLA1PvJsh9zvDjNK+qAi0u3vNOjBwPk0CWU46Uhtg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENsCLvX/9tQfzFmV7aIZfVH0JvvCh6raq3pm9jDd7KTRdklfFPv9FzFI49aJiVoQiA==",
                             PhoneNumber = "5446340539",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "d52b1bcd-7c9d-47ff-a852-a9ef98d0a607",
+                            SecurityStamp = "2733da78-ccaa-427c-99fd-8ffed787a198",
                             Status = (byte)1,
                             SurName = "Öz",
                             TwoFactorEnabled = false,
@@ -474,7 +588,7 @@ namespace Project.DAL.Migrations
                         {
                             Id = 1,
                             Code = "A",
-                            CreatedDate = new DateTime(2024, 1, 14, 20, 43, 43, 82, DateTimeKind.Local).AddTicks(2572),
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 936, DateTimeKind.Local).AddTicks(8944),
                             Score = (byte)10,
                             Status = (byte)1
                         },
@@ -482,7 +596,7 @@ namespace Project.DAL.Migrations
                         {
                             Id = 2,
                             Code = "B",
-                            CreatedDate = new DateTime(2024, 1, 14, 20, 43, 43, 82, DateTimeKind.Local).AddTicks(2577),
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 936, DateTimeKind.Local).AddTicks(8948),
                             Score = (byte)6,
                             Status = (byte)1
                         },
@@ -490,7 +604,7 @@ namespace Project.DAL.Migrations
                         {
                             Id = 3,
                             Code = "C",
-                            CreatedDate = new DateTime(2024, 1, 14, 20, 43, 43, 82, DateTimeKind.Local).AddTicks(2579),
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 936, DateTimeKind.Local).AddTicks(8949),
                             Score = (byte)8,
                             Status = (byte)1
                         });
@@ -541,6 +655,81 @@ namespace Project.DAL.Migrations
                     b.HasIndex("SurveyId");
 
                     b.ToTable("Questions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 936, DateTimeKind.Local).AddTicks(9702),
+                            GroupId = 3,
+                            IsItAnswered = false,
+                            Status = (byte)1,
+                            SurveyId = 1,
+                            Text = "İş yerindeki genel çalışma ortamından ne kadar memnunsunuz?"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 936, DateTimeKind.Local).AddTicks(9705),
+                            GroupId = 2,
+                            IsItAnswered = false,
+                            Status = (byte)1,
+                            SurveyId = 1,
+                            Text = "Takım arkadaşlarıyla iletişim ve işbirliği konusundaki deneyimleriniz nedir?"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 936, DateTimeKind.Local).AddTicks(9707),
+                            GroupId = 1,
+                            IsItAnswered = false,
+                            ParentQuestionId = 2,
+                            Status = (byte)1,
+                            SurveyId = 1,
+                            Text = "Şirket tarafından sunulan eğitim ve gelişim fırsatlarından ne kadar faydalandınız?"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 936, DateTimeKind.Local).AddTicks(9708),
+                            GroupId = 2,
+                            IsItAnswered = false,
+                            ParentQuestionId = 2,
+                            Status = (byte)1,
+                            SurveyId = 1,
+                            Text = "Çalışma saatleri ve esneklik konusundaki beklentilerinizi karşılayabiliyor musunuz?"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 936, DateTimeKind.Local).AddTicks(9709),
+                            GroupId = 3,
+                            IsItAnswered = false,
+                            Status = (byte)1,
+                            SurveyId = 1,
+                            Text = "Performans değerlendirmelerinizle ilgili olarak geribildirim almak konusundaki memnuniyetiniz nedir?"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 936, DateTimeKind.Local).AddTicks(9711),
+                            GroupId = 2,
+                            IsItAnswered = false,
+                            ParentQuestionId = 5,
+                            Status = (byte)1,
+                            SurveyId = 1,
+                            Text = "İş güvenliği önlemleri ve çalışma ortamı konusunda endişeleriniz var mı?"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 936, DateTimeKind.Local).AddTicks(9713),
+                            GroupId = 2,
+                            IsItAnswered = false,
+                            Status = (byte)1,
+                            SurveyId = 1,
+                            Text = "İş yükü ve stres seviyeleriniz hakkında nasıl hissediyorsunuz?"
+                        });
                 });
 
             modelBuilder.Entity("Project.ENTITIES.Models.Survey", b =>
@@ -575,6 +764,16 @@ namespace Project.DAL.Migrations
                     b.HasIndex("CreatedBy");
 
                     b.ToTable("Surveys");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2024, 1, 15, 15, 31, 8, 937, DateTimeKind.Local).AddTicks(97),
+                            Name = "İşyeri Memnuniyeti",
+                            Status = (byte)1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
