@@ -66,6 +66,8 @@ namespace Project.MVCUI.Areas.Responder.Controllers
         [HttpGet("{surveyId}")]
         public IActionResult SolveSurveyAgain(int surveyId)
         {
+
+
             return View();
         }
 

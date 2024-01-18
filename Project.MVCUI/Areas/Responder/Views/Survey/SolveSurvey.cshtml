@@ -89,7 +89,7 @@
                                                 // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
                                                 let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
                                                 $("#endOfSurvey").append(endSurvey);
-                                                setTimeout(function(){
+                                                setTimeout(function () {
 
                                                     window.location = "/Responder/Survey/Index";
                                                 }, 4000);
@@ -107,13 +107,21 @@
 
                             </script>
                         }
+                    </div>
+                    @if (Model.Questions[i]!.ChildQuestions!.Count > 0)
+                    {
 
-                        @if (Model.Questions[i]!.ChildQuestions!.Count > 0)
+
+
+
+                        
+
+                        @for (int childQuestion = 0; childQuestion < Model.Questions[i]!.ChildQuestions!.Count; childQuestion++)
                         {
-                            <h5 class="mb-3 text-success">Yukarıdaki soruya bağlı sorular</h5>
+                            <div class="border border-3 p-3 text-center shadow mb-3 question-block d-none" style="border-radius:20px;">
 
-                            @for (int childQuestion = 0; childQuestion < Model.Questions[i]!.ChildQuestions!.Count; childQuestion++)
-                            {
+                                <h5 class="mb-3 text-success">Önceki soruya bağlı sorular @($"{childQuestion + 1}/{Model.Questions[i]!.ChildQuestions!.Count}")</h5>
+
                                 <h3>@(childQuestionCount)) @Model.Questions[i].ChildQuestions![childQuestion].Text</h3>
 
                                 <input type="hidden" asp-for="@Model.Questions[i].ChildQuestions![childQuestion].Id" />
@@ -121,7 +129,7 @@
                                 @for (int childAnswer = 0; childAnswer < Model.Questions![i].ChildQuestions![childQuestion].Answers.Count; childAnswer++)
                                 {
                                     <div class="form-check d-flex justify-content-center my-3">
-                                        <input class="form-check-input" type="radio" id="@childAnswerCount" asp-for="@Model.Questions[i].ChildQuestions![childQuestion].AnswrId" value="@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id">
+                                        <input class="form-check-input" type="radio" id="@childAnswerCount" onclick="ClickMe('@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id', '@Model.Questions[i].ChildQuestions![childQuestion].Id', '@Model.Id')" asp-for="@Model.Questions[i].ChildQuestions![childQuestion].AnswrId" value="@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id">
                                         <label class="form-check-label ms-2" for="@childAnswerCount">
                                             @Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Text
                                         </label>
@@ -129,10 +137,67 @@
 
                                     childAnswerCount++;
                                 }
-                            }
-                        }
 
-                    </div>
+                                <script type="text/javascript">
+
+                                    function ClickMe(answerId, questionId, surveyId) {
+
+                                        let formData = new FormData();
+
+                                        formData.set("QuestionId", questionId);
+
+                                        formData.set("AnswerId", answerId);
+
+                                        formData.set("SurveyId", surveyId);
+
+                                        $(event.target).closest('.form-check').prop('disabled', true);
+
+                                        $.ajax({
+
+                                            url: "/Responder/Survey/QuestionAnswer",
+                                            data: formData,
+                                            type: "POST",
+                                            cache: false,
+                                            contentType: false,
+                                            processData: false,
+                                            success: function (data) {
+
+                                                let successMessage = data.message;
+                                                console.log(successMessage);
+
+                                                let currentQuestion = $(".question-block:visible");
+                                                let nextQuestion = currentQuestion.next(".question-block");
+
+                                                if (nextQuestion.length > 0) {
+                                                    currentQuestion.hide();
+                                                    nextQuestion.removeClass("d-none");
+                                                } else {
+                                                    currentQuestion.hide();
+
+                                                    // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
+                                                    let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
+                                                    $("#endOfSurvey").append(endSurvey);
+                                                    setTimeout(function () {
+
+                                                        window.location = "/Responder/Survey/Index";
+                                                    }, 4000);
+                                                }
+                                            },
+                                            error: function (data) {
+
+                                                let errorMessage = data.responseJSON.message;
+                                                console.log(errorMessage);
+                                            }
+                                        });
+                                    };
+
+
+
+                                </script>
+
+                            </div>
+                        }
+                    }
 
                     questionCount++;
                 }
