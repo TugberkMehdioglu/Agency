@@ -11,6 +11,3 @@ Email => responder@gmail.com
 Analyzer için:
 Email => analyzer@gmail.com
 Şifre => Password12*
-
-
-Responder tarafında anket gösterimi var fakat cevaplama kısmı tamamlanmadı.
