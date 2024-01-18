@@ -35,6 +35,16 @@ namespace Project.MVCUI.Areas.Responder.Controllers
 
             List<SurveyViewModel> surveyViewModels = _mapper.Map<List<SurveyViewModel>>(surveys);
 
+            var (error, appUser) = await _appUserManager.FindByNameViaIdentity(User.Identity!.Name!);
+
+            foreach (SurveyViewModel item in surveyViewModels)
+            {
+                if (await _appUserSurveyManager.AnyAsync(x => x.SurveyId == item.Id && x.AppUserId == appUser!.Id))
+                {
+                    item.IsCompleted = true;
+                }
+            }
+
             return View(surveyViewModels);
         }
 
@@ -53,12 +63,12 @@ namespace Project.MVCUI.Areas.Responder.Controllers
             return View(surveyViewModel);
         }
 
-        [HttpPost("{surveyId}")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SolveSurvey(SurveyViewModel request)
+        [HttpGet("{surveyId}")]
+        public IActionResult SolveSurveyAgain(int surveyId)
         {
             return View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> QuestionAnswer(int QuestionId, int AnswerId, int SurveyId)

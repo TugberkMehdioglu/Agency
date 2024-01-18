@@ -43,9 +43,14 @@ else if (TempData["fail"] != null)
                         <tr class="align-middle">
                             <td class="text-center">@item.Name</td>
                             <td class="text-center">
-
-                                <a class="btn btn-outline-success" style="border-radius:20px;" asp-area="Responder" asp-controller="Survey" asp-action="SolveSurvey" asp-route-surveyId="@item.Id">Anketi Çöz</a>
-
+                                @if (!item.IsCompleted)
+                                {
+                                    <a class="btn btn-outline-success" style="border-radius:20px;" asp-area="Responder" asp-controller="Survey" asp-action="SolveSurvey" asp-route-surveyId="@item.Id">Anketi Çöz</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-outline-warning" style="border-radius:20px;" asp-area="Responder" asp-controller="Survey" asp-action="SolveSurveyAgain" asp-route-surveyId="@item.Id">Tekrar Çöz</a>
+                                }
                             </td>
                         </tr>
                     }

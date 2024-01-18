@@ -12,6 +12,7 @@ namespace Project.MVCUI.Areas.Creater.CreatorViewModel
         [StringLength(150, MinimumLength = 2, ErrorMessage = "{0}, {2} ile {1} karakter arasında olmalıdır")]
         public string Name { get; set; } = null!;
 
+        public bool IsCompleted { get; set; }
 
         //AppUser foreignKey for creator of survey
         public int? CreatedBy { get; set; }

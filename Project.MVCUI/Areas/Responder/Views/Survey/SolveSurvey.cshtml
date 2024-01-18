@@ -22,7 +22,7 @@
 
         @if (Model.Questions == null || Model.Questions.Count < 1)
         {
-            <h5>Anketenizde henüz soru bulunmamakta, soru eklemek için <a asp-area="Creater" asp-controller="Survey" asp-action="AddQuestionToSurvey" asp-route-surveyId="@Model.Id">tıklayınız...</a></h5>
+            <h5 class="text-center text-warning">Anketenizde henüz soru bulunmamakta, lütfen yetkili ile iletişime geçiniz.</h5>
         }
         else
         {
