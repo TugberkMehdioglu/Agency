@@ -48,9 +48,72 @@
                                 </label>
                             </div>
 
+                            @if(answer == (Model.Questions[i].Answers.Count - 1))
+                            {
+                                <button type="button" class="btn btn-outline-primary mt-3" style="border-radius:20px;" onclick="SkipQuestion('@Model.Questions[i]!.ChildQuestions!.Count')">Bu soruyu atla</button>
+                            }
+
                             answerCount++;
 
                             <script type="text/javascript">
+
+                                function SkipQuestion(childQuestionsCount){
+
+                                    if(childQuestionsCount > 0){
+
+                                        console.log(childQuestionsCount)
+
+                                        let firstMainQuestion = $(".question-block:visible");
+                                        let currentQuestion = $(".question-block:visible");
+                                        let nextQuestion;
+
+                                        for(let i = 0; i < childQuestionsCount; i++){
+
+                                            nextQuestion = currentQuestion.next(".question-block");
+                                            currentQuestion = nextQuestion;
+                                        };
+
+                                        
+
+                                        if (nextQuestion.length > 0) {
+
+                                            firstMainQuestion.hide();
+                                            nextQuestion = currentQuestion.next(".question-block");
+                                            nextQuestion.removeClass("d-none");
+                                        } else {
+
+                                            currentQuestion.hide();
+
+                                            // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
+                                            let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
+                                            $("#endOfSurvey").append(endSurvey);
+                                            setTimeout(function () {
+
+                                                window.location = "/Responder/Survey/Index";
+                                            }, 4000);
+                                        }
+                                    }
+                                    else{
+
+                                        let currentQuestion = $(".question-block:visible");
+                                        let nextQuestion = currentQuestion.next(".question-block");
+
+                                        if (nextQuestion.length > 0) {
+                                            currentQuestion.hide();
+                                            nextQuestion.removeClass("d-none");
+                                        } else {
+                                            currentQuestion.hide();
+
+                                            // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
+                                            let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
+                                            $("#endOfSurvey").append(endSurvey);
+                                            setTimeout(function () {
+
+                                                window.location = "/Responder/Survey/Index";
+                                            }, 4000);
+                                        }
+                                    };
+                                };
 
                                 function ClickMe(answerId, questionId, surveyId) {
 
@@ -109,12 +172,7 @@
                         }
                     </div>
                     @if (Model.Questions[i]!.ChildQuestions!.Count > 0)
-                    {
-
-
-
-
-                        
+                    {                  
 
                         @for (int childQuestion = 0; childQuestion < Model.Questions[i]!.ChildQuestions!.Count; childQuestion++)
                         {
