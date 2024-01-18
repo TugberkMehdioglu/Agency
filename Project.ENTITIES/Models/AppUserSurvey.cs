@@ -8,13 +8,13 @@ namespace Project.ENTITIES.Models
 {
     public class AppUserSurvey : BaseEntity
     {
-        public int? AppUserId { get; set; }
-        public int? SurveyId { get; set; }
+        public int AppUserId { get; set; }
+        public int SurveyId { get; set; }
         public decimal? Score { get; set; }
 
 
         //Navigation Properties
-        public AppUser? AppUser { get; set; }
-        public Survey? Survey { get; set; }
+        public AppUser AppUser { get; set; } = null!;
+        public Survey Survey { get; set; } = null!;
     }
 }

@@ -23,7 +23,7 @@ namespace Project.MAP.Configuration
             });
 
             builder.HasOne(x => x.AppUser).WithMany(x => x.AppUserSurveys).HasForeignKey(x => x.AppUserId).OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne(x => x.Survey).WithMany(x => x.AppUserSurveys).HasForeignKey(x => x.AppUserId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.Survey).WithMany(x => x.AppUserSurveys).HasForeignKey(x => x.SurveyId).OnDelete(DeleteBehavior.NoAction);
 
             builder.Property(x => x.Score).HasPrecision(4, 2);
         }

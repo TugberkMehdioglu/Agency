@@ -32,6 +32,8 @@ namespace Project.DAL.Repositories.Concretes
             return null;
         }
 
+        public async Task<AppUser> FindByNameViaIdentity(string userName) => await _userManager.FindByNameAsync(userName);
+
         public async Task<AppUser> FindByEmailViaIdentity(string email)
         {
             return await _userManager.FindByEmailAsync(email);

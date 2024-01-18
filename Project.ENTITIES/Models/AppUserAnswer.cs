@@ -8,11 +8,11 @@ namespace Project.ENTITIES.Models
 {
     public class AppUserAnswer : BaseEntity
     {
-        public int? AppUserId { get; set; }
-        public int? AnswerId { get; set; }
+        public int AppUserId { get; set; }
+        public int AnswerId { get; set; }
 
         //Navigation Properties
-        public AppUser? AppUser { get; set; }
-        public Answer? Answer { get; set; }
+        public AppUser AppUser { get; set; } = null!;
+        public Answer Answer { get; set; } = null!;
     }
 }

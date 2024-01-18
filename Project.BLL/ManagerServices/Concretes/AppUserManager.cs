@@ -38,6 +38,14 @@ namespace Project.BLL.ManagerServices.Concretes
             else return (null, appUser);
         }
 
+        public async Task<(string?, AppUser?)> FindByNameViaIdentity(string userName)
+        {
+            AppUser? appUser = await _appUserRepository.FindByNameViaIdentity(userName);
+
+            if (appUser == null) return ("Kullanıcı bulunamadı", null);
+            else return (null, appUser);
+        }
+
         public async Task SignOutAsync() => await _appUserRepository.SignOutAsync();
 
         public async Task<string?> PasswordSignInAsync(AppUser appUser, string password, bool rememberMe, bool lockoutOnFailure)
