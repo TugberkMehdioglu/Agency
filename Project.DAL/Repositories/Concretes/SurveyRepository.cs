@@ -18,12 +18,49 @@ namespace Project.DAL.Repositories.Concretes
         }
 
         public async Task<Survey?> GetSurveyWithQuestionAndAnswerById(int surveyId) => await _context.Surveys.Where(x => x.Id == surveyId && x.Status != DataStatus.Deleted)
-            .Include(x => x.Questions)
-            .ThenInclude(x => x.Group)
-            .Include(x => x.Questions)
-            .ThenInclude(x => x.Answers)
-            .Include(x => x.Questions)
-            .ThenInclude(x => x.ChildQuestions)
-            .FirstOrDefaultAsync();
+             .Select(x => new Survey()
+             {
+                 Id = x.Id,
+                 Name = x.Name,
+                 CreatedBy = x.CreatedBy,
+                 Questions = x.Questions.Select(x => new Question
+                 {
+                     Id = x.Id,
+                     Text = x.Text,
+                     IsItAnswered = x.IsItAnswered,
+                     ParentQuestionId = x.ParentQuestionId,
+                     Group = new Group()
+                     {
+                         Id = x.Group.Id,
+                         Code = x.Group.Code,
+                         Score = x.Group.Score
+                     },
+                     Answers = x.Answers.Select(x => new Answer
+                     {
+                         Id = x.Id,
+                         Text = x.Text,
+                         QuestionId = x.QuestionId
+                     }).ToList(),
+                     ChildQuestions = x.ChildQuestions.Select(x => new Question
+                     {
+                         Id = x.Id,
+                         Text = x.Text,
+                         IsItAnswered = x.IsItAnswered,
+                         ParentQuestionId = x.ParentQuestionId,
+                         Group = new Group()
+                         {
+                             Id = x.Group.Id,
+                             Code = x.Group.Code,
+                             Score = x.Group.Score
+                         },
+                         Answers = x.Answers.Select(x => new Answer
+                         {
+                             Id = x.Id,
+                             Text = x.Text,
+                             QuestionId = x.QuestionId
+                         }).ToList(),
+                     }).ToList()
+                 }).ToList()
+             }).FirstOrDefaultAsync();
     }
 }
