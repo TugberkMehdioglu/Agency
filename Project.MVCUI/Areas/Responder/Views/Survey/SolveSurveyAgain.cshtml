@@ -41,10 +41,8 @@
                         @for (int answer = 0; answer < Model.Questions[i].Answers.Count; answer++)
                         {
 
-                            <input type="hidden" asp-for="@Model.Questions[i].Answers[answer].FormerAnswerId" />
-
                             <div class="form-check d-flex justify-content-center my-3">
-                                <input class="form-check-input" @(@Model.Questions[i].Answers[answer].FormerAnswerId != null ? "checked" : "") type="radio" id="@answerCount" onclick="ClickMe('@Model.Questions[i].Answers[answer].Id', '@Model.Questions[i].Id', '@Model.Id')" asp-for="@Model.Questions[i].AnswrId" value="@Model.Questions[i].Answers[answer].Id">
+                                <input class="form-check-input" @(Model.Questions[i].Answers[answer].FormerAnswerId == Model.Questions[i].Answers[answer].Id ? "checked" : "") type="radio" id="@answerCount" onclick="ClickMe('@Model.Questions[i].Answers[answer].Id', '@Model.Questions[i].Answers[answer].FormerAnswerId', '@Model.Id')" asp-for="@Model.Questions[i].AnswrId" value="@Model.Questions[i].Answers[answer].Id">
                                 <label class="form-check-label ms-2" for="@answerCount">
                                     @Model.Questions[i].Answers[answer].Text
                                 </label>
@@ -59,8 +57,9 @@
 
                             <script type="text/javascript">
 
-                                function SkipQuestion(childQuestionsCount) {
 
+                                function SkipQuestion(childQuestionsCount) {
+                               
                                     if (childQuestionsCount > 0) {
 
                                         console.log(childQuestionsCount)
@@ -116,11 +115,11 @@
                                     };
                                 };
 
-                                function ClickMe(answerId, questionId, surveyId) {
+                                function ClickMe(answerId, FormerAnswerId, surveyId) {
 
                                     let formData = new FormData();
 
-                                    formData.set("QuestionId", questionId);
+                                    formData.set("FormerAnswerId", FormerAnswerId);
 
                                     formData.set("AnswerId", answerId);
 
@@ -130,7 +129,7 @@
 
                                     $.ajax({
 
-                                        url: "/Responder/Survey/QuestionAnswer",
+                                        url: "/Responder/Survey/EditSurvey",
                                         data: formData,
                                         type: "POST",
                                         cache: false,
@@ -191,7 +190,7 @@
                                     <input type="hidden" asp-for="@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].FormerAnswerId" />
 
                                     <div class="form-check d-flex justify-content-center my-3">
-                                        <input class="form-check-input" @(Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].FormerAnswerId != null ? "checked" : "") type="radio" id="@childAnswerCount" onclick="ClickMe('@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id', '@Model.Questions[i].ChildQuestions![childQuestion].Id', '@Model.Id')" asp-for="@Model.Questions[i].ChildQuestions![childQuestion].AnswrId" value="@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id">
+                                        <input class="form-check-input" @(Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].FormerAnswerId == Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id ? "checked" : "") type="radio" id="@childAnswerCount" onclick="ClickMe('@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id', '@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].FormerAnswerId', '@Model.Id')" asp-for="@Model.Questions[i].ChildQuestions![childQuestion].AnswrId" value="@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id">
                                         <label class="form-check-label ms-2" for="@childAnswerCount">
                                             @Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Text
                                         </label>
@@ -229,11 +228,11 @@
                                     };
 
 
-                                    function ClickMe(answerId, questionId, surveyId) {
+                                    function ClickMe(answerId, FormerAnswerId, surveyId) {
 
                                         let formData = new FormData();
 
-                                        formData.set("QuestionId", questionId);
+                                        formData.set("FormerAnswerId", FormerAnswerId);
 
                                         formData.set("AnswerId", answerId);
 
@@ -243,7 +242,7 @@
 
                                         $.ajax({
 
-                                            url: "/Responder/Survey/QuestionAnswer",
+                                            url: "/Responder/Survey/EditSurvey",
                                             data: formData,
                                             type: "POST",
                                             cache: false,

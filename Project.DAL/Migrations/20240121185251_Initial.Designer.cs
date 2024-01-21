@@ -12,7 +12,7 @@ using Project.DAL.ContextClasses;
 namespace Project.DAL.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20240117185956_Initial")]
+    [Migration("20240121185251_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,21 +57,21 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "17304d73-b058-4c7a-8fdc-95533d1c8918",
+                            ConcurrencyStamp = "468f9bee-b0cc-4bed-acfb-0846c210a137",
                             Name = "Creator",
                             NormalizedName = "CREATOR"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "e18f4fa5-07dd-4553-8da4-4d7e9f741a3e",
+                            ConcurrencyStamp = "09daffee-ff04-41d1-aead-7eedca95fe30",
                             Name = "Responder",
                             NormalizedName = "RESPONDER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "535bc100-abc2-4cba-85e1-bad29d1238f3",
+                            ConcurrencyStamp = "8dec57d4-89a0-4f3c-8ddc-e404fa8f1ffa",
                             Name = "Analyzer",
                             NormalizedName = "ANALYZER"
                         });
@@ -234,7 +234,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4152),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9888),
                             QuestionId = 1,
                             Status = (byte)1,
                             Text = "Çok memnunum"
@@ -242,7 +242,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4165),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9893),
                             QuestionId = 1,
                             Status = (byte)1,
                             Text = "Memnun değilim"
@@ -250,7 +250,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4237),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9896),
                             QuestionId = 2,
                             Status = (byte)1,
                             Text = "Mükemmel"
@@ -258,7 +258,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4239),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9898),
                             QuestionId = 2,
                             Status = (byte)1,
                             Text = "İyileştirilebilir"
@@ -266,7 +266,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4242),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9900),
                             QuestionId = 3,
                             Status = (byte)1,
                             Text = "Çok fazla fayda sağladım"
@@ -274,7 +274,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4248),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9904),
                             QuestionId = 3,
                             Status = (byte)1,
                             Text = "Yeterli değil"
@@ -282,7 +282,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4251),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9907),
                             QuestionId = 4,
                             Status = (byte)1,
                             Text = "Evet, tam olarak"
@@ -290,7 +290,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4253),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9909),
                             QuestionId = 4,
                             Status = (byte)1,
                             Text = "Hayır, daha fazla esneklik istiyorum"
@@ -298,7 +298,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4256),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9911),
                             QuestionId = 5,
                             Status = (byte)1,
                             Text = "Memnunum"
@@ -306,7 +306,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4260),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9914),
                             QuestionId = 5,
                             Status = (byte)1,
                             Text = "Daha fazla geribildirim bekliyorum"
@@ -314,7 +314,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4262),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9916),
                             QuestionId = 6,
                             Status = (byte)1,
                             Text = "Hayır, güvenli hissediyorum"
@@ -322,7 +322,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4265),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9918),
                             QuestionId = 6,
                             Status = (byte)1,
                             Text = "Evet, iyileştirmeler yapılmalı"
@@ -330,7 +330,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4267),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9920),
                             QuestionId = 7,
                             Status = (byte)1,
                             Text = "Yönetilebilir"
@@ -338,7 +338,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 14,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4269),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9922),
                             QuestionId = 7,
                             Status = (byte)1,
                             Text = "Yüksek"
@@ -437,18 +437,18 @@ namespace Project.DAL.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a8647d30-7d91-499a-9435-2e09b7830486",
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 666, DateTimeKind.Local).AddTicks(1905),
+                            ConcurrencyStamp = "b7f6dd10-cf9e-4c40-aefc-bfe5c4cfb4a7",
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 92, DateTimeKind.Local).AddTicks(5929),
                             Email = "creator@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Kemal",
                             NormalizedEmail = "CREATOR@GMAIL.COM",
                             NormalizedUserName = "CREATOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAENPu17FpaMyhKR2dPbbxPsspRTtDVWrSTN+hbSn9MRcnr30GTVeiCHqOAVwYdTN4qg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIQ3WAJ2Fpm3Wxn207ffi9OXYUbeGSKZ6lkFb4U9rairXJ2FBHhRcIUK1V5uWbr7XA==",
                             PhoneNumber = "5312292928",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "0df8c238-9133-4744-8f08-771c74fee04d",
+                            SecurityStamp = "93601eac-ec99-477e-8047-1d97eb4daec9",
                             Status = (byte)1,
                             SurName = "Akcan",
                             TwoFactorEnabled = false,
@@ -458,18 +458,18 @@ namespace Project.DAL.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c4abaeb6-7968-486f-b43d-7b94a42f008a",
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 666, DateTimeKind.Local).AddTicks(1942),
+                            ConcurrencyStamp = "29d232cc-5f15-4dd7-8ba0-f8df082576df",
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 92, DateTimeKind.Local).AddTicks(5964),
                             Email = "responder@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Sefa",
                             NormalizedEmail = "RESPONDER@GMAIL.COM",
                             NormalizedUserName = "RESPONDER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOqpGDKWXjigc4IUtAFS9M6tt2xaXDDj8Qkwe2Y1tacPqZgTP+3n0Fru7STm0jL8fA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKQFlAEmqcUzmw37MiyjiaxERli8TKD0oMPaAs03dRk1Yq3vNy4C02Ca0upTPqOjwA==",
                             PhoneNumber = "5446340539",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "7d89bbf4-e504-4bd1-a404-1b544cfb5f13",
+                            SecurityStamp = "4665c646-a23f-4087-88ef-448add2ee2a2",
                             Status = (byte)1,
                             SurName = "Er",
                             TwoFactorEnabled = false,
@@ -479,18 +479,18 @@ namespace Project.DAL.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "39fe04b0-1503-44d3-b308-4f54ed66976e",
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 666, DateTimeKind.Local).AddTicks(1959),
+                            ConcurrencyStamp = "82e80d88-0ef5-49fb-96e6-bdfc7af3628a",
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 92, DateTimeKind.Local).AddTicks(5980),
                             Email = "analyzer@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Bora",
                             NormalizedEmail = "ANALYZER@GMAIL.COM",
                             NormalizedUserName = "ANALYZER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEH/q2B6T/odsmHHNDakuTozICxFb2VRyY1rIr5zXZcFEjEaTuEW/npWkSyJt27UMqQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN6X5/oCCvV6zd4uMXnQWddnboPsGgZoG1TQgAxuyc/BMDeX4nugQY2Beg8eD0+UlA==",
                             PhoneNumber = "5446340539",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "ee225303-7c1e-4f20-91e2-fe6d16ed18fd",
+                            SecurityStamp = "6b405c39-e284-4fd5-aee0-032c7610fed0",
                             Status = (byte)1,
                             SurName = "Öz",
                             TwoFactorEnabled = false,
@@ -592,7 +592,7 @@ namespace Project.DAL.Migrations
                         {
                             Id = 1,
                             Code = "A",
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(2625),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(123),
                             Score = (byte)10,
                             Status = (byte)1
                         },
@@ -600,7 +600,7 @@ namespace Project.DAL.Migrations
                         {
                             Id = 2,
                             Code = "B",
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(2631),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(130),
                             Score = (byte)6,
                             Status = (byte)1
                         },
@@ -608,7 +608,7 @@ namespace Project.DAL.Migrations
                         {
                             Id = 3,
                             Code = "C",
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(2634),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(133),
                             Score = (byte)8,
                             Status = (byte)1
                         });
@@ -664,7 +664,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4173),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1432),
                             GroupId = 3,
                             IsItAnswered = false,
                             Status = (byte)1,
@@ -674,7 +674,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4179),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1436),
                             GroupId = 2,
                             IsItAnswered = false,
                             Status = (byte)1,
@@ -684,7 +684,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4183),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1440),
                             GroupId = 1,
                             IsItAnswered = false,
                             ParentQuestionId = 2,
@@ -695,7 +695,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4186),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1442),
                             GroupId = 2,
                             IsItAnswered = false,
                             ParentQuestionId = 2,
@@ -706,7 +706,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4189),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1444),
                             GroupId = 3,
                             IsItAnswered = false,
                             Status = (byte)1,
@@ -716,7 +716,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4194),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1450),
                             GroupId = 2,
                             IsItAnswered = false,
                             ParentQuestionId = 5,
@@ -727,7 +727,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4196),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1452),
                             GroupId = 2,
                             IsItAnswered = false,
                             Status = (byte)1,
@@ -774,7 +774,7 @@ namespace Project.DAL.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(5009),
+                            CreatedDate = new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(2218),
                             Name = "İşyeri Memnuniyeti",
                             Status = (byte)1
                         });

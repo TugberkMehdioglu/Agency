@@ -82,18 +82,98 @@ namespace Project.MVCUI.Areas.Responder.Controllers
 
             SurveyViewModel surveyViewModel = _mapper.Map<SurveyViewModel>(survey);
 
-            foreach (QuestionViewModel item in surveyViewModel.Questions!)
+            int? FormerAnswerId = null;
+
+            foreach (QuestionViewModel item in surveyViewModel.Questions.Where(x => x.ParentQuestionId == null)!)
             {
                 foreach (AnswerViewModel element in item.Answers!)
                 {
-                    if (await _appUserAnswerManager.AnyAsync(x => x.AppUserId == appUser!.Id && x.AnswerId == element.Id))
+                    if (await _appUserAnswerManager.AnyAsync(x => x.AppUserId == appUser!.Id && x.AnswerId == element.Id && x.Status != DataStatus.Deleted))
                     {
-                        element.FormerAnswerId = element.Id;
+                        FormerAnswerId = element.Id;
+                        break;
+                    }
+                }
+
+                if(FormerAnswerId != null)
+                {
+                    foreach (AnswerViewModel element2 in item.Answers!)
+                    {
+                        if (element2.FormerAnswerId == null) element2.FormerAnswerId = FormerAnswerId;
+                    }
+                }
+
+                if(item.ChildQuestions.Count > 0)
+                {
+                    foreach (QuestionViewModel childQuestion in item.ChildQuestions)
+                    {
+                        foreach (AnswerViewModel childAnswer in childQuestion.Answers)
+                        {
+                            if (await _appUserAnswerManager.AnyAsync(x => x.AppUserId == appUser!.Id && x.AnswerId == childAnswer.Id && x.Status != DataStatus.Deleted))
+                            {
+                                FormerAnswerId = childAnswer.Id;
+                                break;
+                            }
+                        }
+
+                        if (FormerAnswerId != null)
+                        {
+                            foreach (AnswerViewModel childAnswer in childQuestion.Answers)
+                            {
+                                if (childAnswer.FormerAnswerId == null) childAnswer.FormerAnswerId = FormerAnswerId;
+                            }
+                        }
                     }
                 }
             }
 
             return View(surveyViewModel);
+        }
+
+
+        public async Task<IActionResult> EditSurvey(int? FormerAnswerId, int AnswerId, int SurveyId)
+        {
+            AppUser? appUser = await _appUserManager.Where(x => x.UserName == User.Identity!.Name && x.Status != DataStatus.Deleted).FirstOrDefaultAsync();
+            if (appUser == null) return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Kullanıcı bulunamadı" });
+
+            if(FormerAnswerId == AnswerId)
+            {
+                return Ok(new { message = "Tammamdır babba" });
+            }
+            else if (FormerAnswerId.HasValue && (await _appUserAnswerManager.AnyAsync(x => x.AnswerId == AnswerId && x.AppUserId == appUser.Id && x.Status == DataStatus.Deleted)))
+            {
+                AppUserAnswer appUserAnswer = (await _appUserAnswerManager.Where(x => x.AnswerId == AnswerId && x.AppUserId == appUser.Id && x.Status == DataStatus.Deleted).FirstOrDefaultAsync())!;
+                appUserAnswer.ModifiedDate = DateTime.Now;
+                appUserAnswer.DeletedDate = null;
+                appUserAnswer.Status = DataStatus.Updated;
+
+                AppUserAnswer formerAppUserAnswer = (await _appUserAnswerManager.Where(x => x.AnswerId == FormerAnswerId && x.AppUserId == appUser.Id).FirstOrDefaultAsync())!;
+
+                await _appUserAnswerManager.DeleteAsync(formerAppUserAnswer);
+                await _appUserAnswerManager.UpdateAsync(appUserAnswer);//Status'u delete'den update'e çektik.
+            }
+            else if (FormerAnswerId.HasValue)
+            {
+                AppUserAnswer formerAppUserAnswer = (await _appUserAnswerManager.Where(x => x.AnswerId == FormerAnswerId && x.AppUserId == appUser.Id).FirstOrDefaultAsync())!;
+
+                string? error = await _appUserAnswerManager.DeleteAsync(formerAppUserAnswer);
+                if (error != null) return StatusCode(StatusCodes.Status500InternalServerError, new { message = error });
+
+                AppUserAnswer newAppUserAnswer = new() { AppUserId = appUser.Id, AnswerId = AnswerId };
+
+                string? newError = await _appUserAnswerManager.AddAsync(newAppUserAnswer);
+                if (newError != null) return StatusCode(StatusCodes.Status500InternalServerError, new { message = newError });
+
+            }
+            else
+            {
+                AppUserAnswer appUserAnswer = new() { AppUserId = appUser.Id, AnswerId = AnswerId };
+
+                string? error = await _appUserAnswerManager.AddAsync(appUserAnswer);
+                if (error != null) return StatusCode(StatusCodes.Status500InternalServerError, new { message = error });
+            }
+
+            return Ok(new { message = "Tammamdır babba" });
         }
 
 

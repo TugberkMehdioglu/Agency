@@ -324,9 +324,9 @@ namespace Project.DAL.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "17304d73-b058-4c7a-8fdc-95533d1c8918", "Creator", "CREATOR" },
-                    { 2, "e18f4fa5-07dd-4553-8da4-4d7e9f741a3e", "Responder", "RESPONDER" },
-                    { 3, "535bc100-abc2-4cba-85e1-bad29d1238f3", "Analyzer", "ANALYZER" }
+                    { 1, "468f9bee-b0cc-4bed-acfb-0846c210a137", "Creator", "CREATOR" },
+                    { 2, "09daffee-ff04-41d1-aead-7eedca95fe30", "Responder", "RESPONDER" },
+                    { 3, "8dec57d4-89a0-4f3c-8ddc-e404fa8f1ffa", "Analyzer", "ANALYZER" }
                 });
 
             migrationBuilder.InsertData(
@@ -334,9 +334,9 @@ namespace Project.DAL.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedDate", "DeletedDate", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "ModifiedDate", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "SurName", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "a8647d30-7d91-499a-9435-2e09b7830486", new DateTime(2024, 1, 17, 21, 59, 55, 666, DateTimeKind.Local).AddTicks(1905), null, "creator@gmail.com", true, true, null, null, "Kemal", "CREATOR@GMAIL.COM", "CREATOR", "AQAAAAEAACcQAAAAENPu17FpaMyhKR2dPbbxPsspRTtDVWrSTN+hbSn9MRcnr30GTVeiCHqOAVwYdTN4qg==", "5312292928", true, "0df8c238-9133-4744-8f08-771c74fee04d", (byte)1, "Akcan", false, "Creator" },
-                    { 2, 0, "c4abaeb6-7968-486f-b43d-7b94a42f008a", new DateTime(2024, 1, 17, 21, 59, 55, 666, DateTimeKind.Local).AddTicks(1942), null, "responder@gmail.com", true, true, null, null, "Sefa", "RESPONDER@GMAIL.COM", "RESPONDER", "AQAAAAEAACcQAAAAEOqpGDKWXjigc4IUtAFS9M6tt2xaXDDj8Qkwe2Y1tacPqZgTP+3n0Fru7STm0jL8fA==", "5446340539", true, "7d89bbf4-e504-4bd1-a404-1b544cfb5f13", (byte)1, "Er", false, "Responder" },
-                    { 3, 0, "39fe04b0-1503-44d3-b308-4f54ed66976e", new DateTime(2024, 1, 17, 21, 59, 55, 666, DateTimeKind.Local).AddTicks(1959), null, "analyzer@gmail.com", true, true, null, null, "Bora", "ANALYZER@GMAIL.COM", "ANALYZER", "AQAAAAEAACcQAAAAEH/q2B6T/odsmHHNDakuTozICxFb2VRyY1rIr5zXZcFEjEaTuEW/npWkSyJt27UMqQ==", "5446340539", true, "ee225303-7c1e-4f20-91e2-fe6d16ed18fd", (byte)1, "Öz", false, "Analyzer" }
+                    { 1, 0, "b7f6dd10-cf9e-4c40-aefc-bfe5c4cfb4a7", new DateTime(2024, 1, 21, 21, 52, 51, 92, DateTimeKind.Local).AddTicks(5929), null, "creator@gmail.com", true, true, null, null, "Kemal", "CREATOR@GMAIL.COM", "CREATOR", "AQAAAAEAACcQAAAAEIQ3WAJ2Fpm3Wxn207ffi9OXYUbeGSKZ6lkFb4U9rairXJ2FBHhRcIUK1V5uWbr7XA==", "5312292928", true, "93601eac-ec99-477e-8047-1d97eb4daec9", (byte)1, "Akcan", false, "Creator" },
+                    { 2, 0, "29d232cc-5f15-4dd7-8ba0-f8df082576df", new DateTime(2024, 1, 21, 21, 52, 51, 92, DateTimeKind.Local).AddTicks(5964), null, "responder@gmail.com", true, true, null, null, "Sefa", "RESPONDER@GMAIL.COM", "RESPONDER", "AQAAAAEAACcQAAAAEKQFlAEmqcUzmw37MiyjiaxERli8TKD0oMPaAs03dRk1Yq3vNy4C02Ca0upTPqOjwA==", "5446340539", true, "4665c646-a23f-4087-88ef-448add2ee2a2", (byte)1, "Er", false, "Responder" },
+                    { 3, 0, "82e80d88-0ef5-49fb-96e6-bdfc7af3628a", new DateTime(2024, 1, 21, 21, 52, 51, 92, DateTimeKind.Local).AddTicks(5980), null, "analyzer@gmail.com", true, true, null, null, "Bora", "ANALYZER@GMAIL.COM", "ANALYZER", "AQAAAAEAACcQAAAAEN6X5/oCCvV6zd4uMXnQWddnboPsGgZoG1TQgAxuyc/BMDeX4nugQY2Beg8eD0+UlA==", "5446340539", true, "6b405c39-e284-4fd5-aee0-032c7610fed0", (byte)1, "Öz", false, "Analyzer" }
                 });
 
             migrationBuilder.InsertData(
@@ -344,9 +344,9 @@ namespace Project.DAL.Migrations
                 columns: new[] { "Id", "Code", "CreatedDate", "DeletedDate", "ModifiedDate", "Score", "Status" },
                 values: new object[,]
                 {
-                    { 1, "A", new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(2625), null, null, (byte)10, (byte)1 },
-                    { 2, "B", new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(2631), null, null, (byte)6, (byte)1 },
-                    { 3, "C", new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(2634), null, null, (byte)8, (byte)1 }
+                    { 1, "A", new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(123), null, null, (byte)10, (byte)1 },
+                    { 2, "B", new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(130), null, null, (byte)6, (byte)1 },
+                    { 3, "C", new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(133), null, null, (byte)8, (byte)1 }
                 });
 
             migrationBuilder.InsertData(
@@ -362,17 +362,17 @@ namespace Project.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Surveys",
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "DeletedDate", "ModifiedDate", "Name", "Status" },
-                values: new object[] { 1, 1, new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(5009), null, null, "İşyeri Memnuniyeti", (byte)1 });
+                values: new object[] { 1, 1, new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(2218), null, null, "İşyeri Memnuniyeti", (byte)1 });
 
             migrationBuilder.InsertData(
                 table: "Questions",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "GroupId", "IsItAnswered", "ModifiedDate", "ParentQuestionId", "Status", "SurveyId", "Text" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4173), null, 3, false, null, null, (byte)1, 1, "İş yerindeki genel çalışma ortamından ne kadar memnunsunuz?" },
-                    { 2, new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4179), null, 2, false, null, null, (byte)1, 1, "Takım arkadaşlarıyla iletişim ve işbirliği konusundaki deneyimleriniz nedir?" },
-                    { 5, new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4189), null, 3, false, null, null, (byte)1, 1, "Performans değerlendirmelerinizle ilgili olarak geribildirim almak konusundaki memnuniyetiniz nedir?" },
-                    { 7, new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4196), null, 2, false, null, null, (byte)1, 1, "İş yükü ve stres seviyeleriniz hakkında nasıl hissediyorsunuz?" }
+                    { 1, new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1432), null, 3, false, null, null, (byte)1, 1, "İş yerindeki genel çalışma ortamından ne kadar memnunsunuz?" },
+                    { 2, new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1436), null, 2, false, null, null, (byte)1, 1, "Takım arkadaşlarıyla iletişim ve işbirliği konusundaki deneyimleriniz nedir?" },
+                    { 5, new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1444), null, 3, false, null, null, (byte)1, 1, "Performans değerlendirmelerinizle ilgili olarak geribildirim almak konusundaki memnuniyetiniz nedir?" },
+                    { 7, new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1452), null, 2, false, null, null, (byte)1, 1, "İş yükü ve stres seviyeleriniz hakkında nasıl hissediyorsunuz?" }
                 });
 
             migrationBuilder.InsertData(
@@ -380,14 +380,14 @@ namespace Project.DAL.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "ModifiedDate", "QuestionId", "Status", "Text" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4152), null, null, 1, (byte)1, "Çok memnunum" },
-                    { 2, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4165), null, null, 1, (byte)1, "Memnun değilim" },
-                    { 3, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4237), null, null, 2, (byte)1, "Mükemmel" },
-                    { 4, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4239), null, null, 2, (byte)1, "İyileştirilebilir" },
-                    { 9, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4256), null, null, 5, (byte)1, "Memnunum" },
-                    { 10, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4260), null, null, 5, (byte)1, "Daha fazla geribildirim bekliyorum" },
-                    { 13, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4267), null, null, 7, (byte)1, "Yönetilebilir" },
-                    { 14, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4269), null, null, 7, (byte)1, "Yüksek" }
+                    { 1, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9888), null, null, 1, (byte)1, "Çok memnunum" },
+                    { 2, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9893), null, null, 1, (byte)1, "Memnun değilim" },
+                    { 3, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9896), null, null, 2, (byte)1, "Mükemmel" },
+                    { 4, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9898), null, null, 2, (byte)1, "İyileştirilebilir" },
+                    { 9, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9911), null, null, 5, (byte)1, "Memnunum" },
+                    { 10, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9914), null, null, 5, (byte)1, "Daha fazla geribildirim bekliyorum" },
+                    { 13, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9920), null, null, 7, (byte)1, "Yönetilebilir" },
+                    { 14, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9922), null, null, 7, (byte)1, "Yüksek" }
                 });
 
             migrationBuilder.InsertData(
@@ -395,9 +395,9 @@ namespace Project.DAL.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "GroupId", "IsItAnswered", "ModifiedDate", "ParentQuestionId", "Status", "SurveyId", "Text" },
                 values: new object[,]
                 {
-                    { 3, new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4183), null, 1, false, null, 2, (byte)1, 1, "Şirket tarafından sunulan eğitim ve gelişim fırsatlarından ne kadar faydalandınız?" },
-                    { 4, new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4186), null, 2, false, null, 2, (byte)1, 1, "Çalışma saatleri ve esneklik konusundaki beklentilerinizi karşılayabiliyor musunuz?" },
-                    { 6, new DateTime(2024, 1, 17, 21, 59, 55, 673, DateTimeKind.Local).AddTicks(4194), null, 2, false, null, 5, (byte)1, 1, "İş güvenliği önlemleri ve çalışma ortamı konusunda endişeleriniz var mı?" }
+                    { 3, new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1440), null, 1, false, null, 2, (byte)1, 1, "Şirket tarafından sunulan eğitim ve gelişim fırsatlarından ne kadar faydalandınız?" },
+                    { 4, new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1442), null, 2, false, null, 2, (byte)1, 1, "Çalışma saatleri ve esneklik konusundaki beklentilerinizi karşılayabiliyor musunuz?" },
+                    { 6, new DateTime(2024, 1, 21, 21, 52, 51, 99, DateTimeKind.Local).AddTicks(1450), null, 2, false, null, 5, (byte)1, 1, "İş güvenliği önlemleri ve çalışma ortamı konusunda endişeleriniz var mı?" }
                 });
 
             migrationBuilder.InsertData(
@@ -405,12 +405,12 @@ namespace Project.DAL.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "ModifiedDate", "QuestionId", "Status", "Text" },
                 values: new object[,]
                 {
-                    { 5, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4242), null, null, 3, (byte)1, "Çok fazla fayda sağladım" },
-                    { 6, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4248), null, null, 3, (byte)1, "Yeterli değil" },
-                    { 7, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4251), null, null, 4, (byte)1, "Evet, tam olarak" },
-                    { 8, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4253), null, null, 4, (byte)1, "Hayır, daha fazla esneklik istiyorum" },
-                    { 11, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4262), null, null, 6, (byte)1, "Hayır, güvenli hissediyorum" },
-                    { 12, new DateTime(2024, 1, 17, 21, 59, 55, 665, DateTimeKind.Local).AddTicks(4265), null, null, 6, (byte)1, "Evet, iyileştirmeler yapılmalı" }
+                    { 5, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9900), null, null, 3, (byte)1, "Çok fazla fayda sağladım" },
+                    { 6, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9904), null, null, 3, (byte)1, "Yeterli değil" },
+                    { 7, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9907), null, null, 4, (byte)1, "Evet, tam olarak" },
+                    { 8, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9909), null, null, 4, (byte)1, "Hayır, daha fazla esneklik istiyorum" },
+                    { 11, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9916), null, null, 6, (byte)1, "Hayır, güvenli hissediyorum" },
+                    { 12, new DateTime(2024, 1, 21, 21, 52, 51, 91, DateTimeKind.Local).AddTicks(9918), null, null, 6, (byte)1, "Evet, iyileştirmeler yapılmalı" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -23,7 +23,7 @@ namespace Project.DAL.Repositories.Concretes
                  Id = x.Id,
                  Name = x.Name,
                  CreatedBy = x.CreatedBy,
-                 Questions = x.Questions.Select(x => new Question
+                 Questions = x.Questions.Where(x => x.Status != DataStatus.Deleted).Select(x => new Question
                  {
                      Id = x.Id,
                      Text = x.Text,
@@ -35,13 +35,13 @@ namespace Project.DAL.Repositories.Concretes
                          Code = x.Group.Code,
                          Score = x.Group.Score
                      },
-                     Answers = x.Answers.Select(x => new Answer
+                     Answers = x.Answers.Where(x => x.Status != DataStatus.Deleted).Select(x => new Answer
                      {
                          Id = x.Id,
                          Text = x.Text,
                          QuestionId = x.QuestionId
                      }).ToList(),
-                     ChildQuestions = x.ChildQuestions.Select(x => new Question
+                     ChildQuestions = x.ChildQuestions.Where(x => x.Status != DataStatus.Deleted).Select(x => new Question
                      {
                          Id = x.Id,
                          Text = x.Text,
@@ -53,7 +53,7 @@ namespace Project.DAL.Repositories.Concretes
                              Code = x.Group.Code,
                              Score = x.Group.Score
                          },
-                         Answers = x.Answers.Select(x => new Answer
+                         Answers = x.Answers.Where(x => x.Status != DataStatus.Deleted).Select(x => new Answer
                          {
                              Id = x.Id,
                              Text = x.Text,
