@@ -12,6 +12,8 @@ namespace Project.MVCUI.Areas.Creater.CreatorViewModel
         [StringLength(350, MinimumLength = 3, ErrorMessage = "{0}, {2} ile {1} karakter arasında olmalıdır")]
         public string Text { get; set; } = null!;
         public bool SelectedAnswer { get; set; }//For /Responder/Survey/SolveSurvey
+
+        public int? FormerAnswerId { get; set; }//For /Responder/Survey/SolveSurveyAgain
         public int QuestionId { get; set; }
 
 

@@ -64,11 +64,36 @@ namespace Project.MVCUI.Areas.Responder.Controllers
         }
 
         [HttpGet("{surveyId}")]
-        public IActionResult SolveSurveyAgain(int surveyId)
+        public async Task<IActionResult> SolveSurveyAgain(int surveyId)
         {
+            var (error, survey) = await _surveyManager.GetSurveyWithQuestionAndAnswerById(surveyId);
+            if(error != null)
+            {
+                TempData["fail"] = error;
+                return RedirectToAction(nameof(Index));
+            }
 
+            var (appUserError, appUser) = await _appUserManager.FindByNameViaIdentity(User.Identity!.Name!);
+            if(appUserError != null)
+            {
+                TempData["fail"] = error;
+                return RedirectToAction(nameof(Index));
+            }
 
-            return View();
+            SurveyViewModel surveyViewModel = _mapper.Map<SurveyViewModel>(survey);
+
+            foreach (QuestionViewModel item in surveyViewModel.Questions!)
+            {
+                foreach (AnswerViewModel element in item.Answers!)
+                {
+                    if (await _appUserAnswerManager.AnyAsync(x => x.AppUserId == appUser!.Id && x.AnswerId == element.Id))
+                    {
+                        element.FormerAnswerId = element.Id;
+                    }
+                }
+            }
+
+            return View(surveyViewModel);
         }
 
 

@@ -1,7 +1,7 @@
 ﻿@model SurveyViewModel
 
 @{
-    ViewData["Title"] = "SolveSurvey";
+    ViewData["Title"] = "SolveSurveyAgain";
 }
 
 <div asp-validation-summary="ModelOnly" class="alert alert-danger col-sm-12 col-md-10 offset-md-1 col-lg-6 mx-lg-auto" style="padding:20px; border-radius:10px;"></div>
@@ -38,11 +38,13 @@
                         <input type="hidden" asp-for="@Model.Questions[i].Id" />
                         <input type="hidden" asp-for="@Model.Id" />
 
-
                         @for (int answer = 0; answer < Model.Questions[i].Answers.Count; answer++)
                         {
+
+                            <input type="hidden" asp-for="@Model.Questions[i].Answers[answer].FormerAnswerId" />
+
                             <div class="form-check d-flex justify-content-center my-3">
-                                <input class="form-check-input" type="radio" id="@answerCount" onclick="ClickMe('@Model.Questions[i].Answers[answer].Id', '@Model.Questions[i].Id', '@Model.Id')" asp-for="@Model.Questions[i].AnswrId" value="@Model.Questions[i].Answers[answer].Id">
+                                <input class="form-check-input" @(@Model.Questions[i].Answers[answer].FormerAnswerId != null ? "checked" : "") type="radio" id="@answerCount" onclick="ClickMe('@Model.Questions[i].Answers[answer].Id', '@Model.Questions[i].Id', '@Model.Id')" asp-for="@Model.Questions[i].AnswrId" value="@Model.Questions[i].Answers[answer].Id">
                                 <label class="form-check-label ms-2" for="@answerCount">
                                     @Model.Questions[i].Answers[answer].Text
                                 </label>
@@ -77,12 +79,11 @@
 
                                         if (nextQuestion.length > 0) {
 
-                                            firstMainQuestion.hide();                                           
+                                            firstMainQuestion.hide();
                                             nextQuestion.removeClass("d-none");
                                         } else {
 
                                             firstMainQuestion.hide();
-                                            
 
                                             // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
                                             let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
@@ -186,14 +187,17 @@
 
                                 @for (int childAnswer = 0; childAnswer < Model.Questions![i].ChildQuestions![childQuestion].Answers.Count; childAnswer++)
                                 {
+
+                                    <input type="hidden" asp-for="@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].FormerAnswerId" />
+
                                     <div class="form-check d-flex justify-content-center my-3">
-                                        <input class="form-check-input" type="radio" id="@childAnswerCount" onclick="ClickMe('@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id', '@Model.Questions[i].ChildQuestions![childQuestion].Id', '@Model.Id')" asp-for="@Model.Questions[i].ChildQuestions![childQuestion].AnswrId" value="@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id">
+                                        <input class="form-check-input" @(Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].FormerAnswerId != null ? "checked" : "") type="radio" id="@childAnswerCount" onclick="ClickMe('@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id', '@Model.Questions[i].ChildQuestions![childQuestion].Id', '@Model.Id')" asp-for="@Model.Questions[i].ChildQuestions![childQuestion].AnswrId" value="@Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Id">
                                         <label class="form-check-label ms-2" for="@childAnswerCount">
                                             @Model.Questions[i].ChildQuestions![childQuestion].Answers[childAnswer].Text
                                         </label>
                                     </div>
 
-                                    if(childAnswer == (Model.Questions![i].ChildQuestions![childQuestion].Answers.Count - 1))
+                                    if (childAnswer == (Model.Questions![i].ChildQuestions![childQuestion].Answers.Count - 1))
                                     {
                                         <button type="button" class="btn btn-outline-primary mt-3" style="border-radius:20px;" onclick="SkipQuestionForChildQuestion()">Bu soruyu atla</button>
                                     }
