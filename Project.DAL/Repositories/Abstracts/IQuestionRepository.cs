@@ -10,5 +10,6 @@ namespace Project.DAL.Repositories.Abstracts
     public interface IQuestionRepository : IRepository<Question>
     {
         public Task<IQueryable<Question>> GetQuestionsWithGroupAsync();
+        public Task<IQueryable<Question>> GetQuestionsAndAnswersWithGroupBySurveyIdAsync(int surveyId);
     }
 }

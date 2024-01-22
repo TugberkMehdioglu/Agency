@@ -33,5 +33,21 @@ namespace Project.BLL.ManagerServices.Concretes
 
             return null;
         }
+
+        public override async Task<string?> UpdateAsync(AppUserSurvey entity)
+        {
+            if (entity == null || entity.Status == DataStatus.Deleted) return "Lütfen gerekli alanları doldurun";
+
+            try
+            {
+                await _appUserSurveyRepository.UpdateAsync(entity);
+            }
+            catch (Exception exception)
+            {
+                return $"Veritabanı işlemi sırasında hata oluştu, ALINAN HATA => {exception.Message}, İÇERİĞİ => {exception.InnerException}";
+            }
+
+            return null;
+        }
     }
 }

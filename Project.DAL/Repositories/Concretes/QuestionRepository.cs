@@ -18,5 +18,7 @@ namespace Project.DAL.Repositories.Concretes
         }
 
         public async Task<IQueryable<Question>> GetQuestionsWithGroupAsync() => _context.Questions.Where(x => x.Status != DataStatus.Deleted).Include(x => x.Group);
+
+        public async Task<IQueryable<Question>> GetQuestionsAndAnswersWithGroupBySurveyIdAsync(int surveyId) => _context.Questions.Where(x => x.SurveyId == surveyId && x.Status != DataStatus.Deleted).Include(x => x.Group).Include(x => x.Answers);
     }
 }

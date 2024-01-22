@@ -22,5 +22,14 @@ namespace Project.DAL.Repositories.Concretes
             await _context.AppUserSurveys!.AddAsync(entity);
             await SaveChangesAsync();
         }
+
+        public override async Task UpdateAsync(AppUserSurvey entity)
+        {
+            entity.Status = DataStatus.Updated;
+            entity.ModifiedDate = DateTime.Now;
+            AppUserSurvey toBeUpdated = (await FindAsync(entity.AppUserId, entity.SurveyId))!;
+            _context.Entry(toBeUpdated).CurrentValues.SetValues(entity);
+            await SaveChangesAsync();
+        }
     }
 }

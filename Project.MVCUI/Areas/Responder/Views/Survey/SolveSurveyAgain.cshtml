@@ -84,13 +84,7 @@
 
                                             firstMainQuestion.hide();
 
-                                            // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
-                                            let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
-                                            $("#endOfSurvey").append(endSurvey);
-                                            setTimeout(function () {
-
-                                                window.location = "/Responder/Survey/Index";
-                                            }, 4000);
+                                            CalculateSurveyAjax();
                                         }
                                     }
                                     else {
@@ -104,13 +98,7 @@
                                         } else {
                                             currentQuestion.hide();
 
-                                            // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
-                                            let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
-                                            $("#endOfSurvey").append(endSurvey);
-                                            setTimeout(function () {
-
-                                                window.location = "/Responder/Survey/Index";
-                                            }, 4000);
+                                            CalculateSurveyAjax();
                                         }
                                     };
                                 };
@@ -149,13 +137,7 @@
                                             } else {
                                                 currentQuestion.hide();
 
-                                                // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
-                                                let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
-                                                $("#endOfSurvey").append(endSurvey);
-                                                setTimeout(function () {
-
-                                                    window.location = "/Responder/Survey/Index";
-                                                }, 4000);
+                                                CalculateSurveyAjax();
                                             }
                                         },
                                         error: function (data) {
@@ -167,6 +149,33 @@
                                 };
 
 
+                                function CalculateSurveyAjax() {
+
+                                    $.ajax({
+
+                                        url: "/Responder/Survey/CalculateSurvey",
+                                        type: "GET",
+                                        data: { surveyId: @Model.Id},
+                                        success: function (data) {
+
+                                            let successMessage = data.message;
+                                            console.log(successMessage);
+
+                                            // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
+                                            let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
+                                            $("#endOfSurvey").append(endSurvey);
+                                            setTimeout(function () {
+
+                                                window.location = "/Responder/Survey/Index";
+                                            }, 4000);
+                                        },
+                                        error: function (data) {
+
+                                            let successMessage = data.responseJSON.message;
+                                            console.log(successMessage);
+                                        }
+                                    });
+                                };
 
                             </script>
                         }
@@ -217,13 +226,7 @@
                                         } else {
                                             currentQuestion.hide();
 
-                                            // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
-                                            let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
-                                            $("#endOfSurvey").append(endSurvey);
-                                            setTimeout(function () {
-
-                                                window.location = "/Responder/Survey/Index";
-                                            }, 4000);
+                                            CalculateSurveyAjax();
                                         }
                                     };
 
@@ -262,13 +265,7 @@
                                                 } else {
                                                     currentQuestion.hide();
 
-                                                    // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
-                                                    let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
-                                                    $("#endOfSurvey").append(endSurvey);
-                                                    setTimeout(function () {
-
-                                                        window.location = "/Responder/Survey/Index";
-                                                    }, 4000);
+                                                    CalculateSurveyAjax();
                                                 }
                                             },
                                             error: function (data) {
@@ -280,6 +277,33 @@
                                     };
 
 
+                                    function CalculateSurveyAjax() {
+
+                                        $.ajax({
+
+                                            url: "/Responder/Survey/CalculateSurvey",
+                                            type: "GET",
+                                            data: { surveyId: @Model.Id},
+                                            success: function (data) {
+
+                                                let successMessage = data.message;
+                                                console.log(successMessage);
+
+                                                // Eğer son soru ise, burada yapılacak işlemleri ekleyebilirsiniz.
+                                                let endSurvey = '<h5 class="text-success">Anketi tamamladığınız için teşekkürler, anasayfaya yönlendiriliyorsunuz</h5>';
+                                                $("#endOfSurvey").append(endSurvey);
+                                                setTimeout(function () {
+
+                                                    window.location = "/Responder/Survey/Index";
+                                                }, 4000);
+                                            },
+                                            error: function (data) {
+
+                                                let successMessage = data.responseJSON.message;
+                                                console.log(successMessage);
+                                            }
+                                        });
+                                    };
 
                                 </script>
 

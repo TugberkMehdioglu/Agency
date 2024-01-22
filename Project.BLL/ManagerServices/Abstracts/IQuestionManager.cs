@@ -10,5 +10,6 @@ namespace Project.BLL.ManagerServices.Abstracts
     public interface IQuestionManager : IManager<Question>
     {
         public Task<IQueryable<Question>> GetQuestionsWithGroupAsync();
+        public Task<IQueryable<Question>> GetQuestionsAndAnswersWithGroupBySurveyIdAsync(int surveyId);
     }
 }

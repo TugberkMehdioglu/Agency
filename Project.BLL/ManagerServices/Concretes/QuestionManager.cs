@@ -18,5 +18,7 @@ namespace Project.BLL.ManagerServices.Concretes
         }
 
         public async Task<IQueryable<Question>> GetQuestionsWithGroupAsync() => await _questionRepository.GetQuestionsWithGroupAsync();
+
+        public async Task<IQueryable<Question>> GetQuestionsAndAnswersWithGroupBySurveyIdAsync(int surveyId) => await _questionRepository.GetQuestionsAndAnswersWithGroupBySurveyIdAsync(surveyId);
     }
 }

@@ -19,14 +19,16 @@ namespace Project.MVCUI.Areas.Responder.Controllers
         private readonly IAppUserSurveyManager _appUserSurveyManager;
         private readonly IAppUserAnswerManager _appUserAnswerManager;
         private readonly IAppUserManager _appUserManager;
+        private readonly IQuestionManager _questionManager;
 
-        public SurveyController(ISurveyManager surveyManager, IMapper mapper, IAppUserSurveyManager appUserSurveyManager, IAppUserAnswerManager appUserAnswerManager, IAppUserManager appUserManager)
+        public SurveyController(ISurveyManager surveyManager, IMapper mapper, IAppUserSurveyManager appUserSurveyManager, IAppUserAnswerManager appUserAnswerManager, IAppUserManager appUserManager, IQuestionManager questionManager)
         {
             _surveyManager = surveyManager;
             _mapper = mapper;
             _appUserSurveyManager = appUserSurveyManager;
             _appUserAnswerManager = appUserAnswerManager;
             _appUserManager = appUserManager;
+            _questionManager = questionManager;
         }
 
         public async Task<IActionResult> Index()
@@ -103,6 +105,8 @@ namespace Project.MVCUI.Areas.Responder.Controllers
                     }
                 }
 
+                FormerAnswerId = null;
+
                 if(item.ChildQuestions.Count > 0)
                 {
                     foreach (QuestionViewModel childQuestion in item.ChildQuestions)
@@ -123,6 +127,8 @@ namespace Project.MVCUI.Areas.Responder.Controllers
                                 if (childAnswer.FormerAnswerId == null) childAnswer.FormerAnswerId = FormerAnswerId;
                             }
                         }
+
+                        FormerAnswerId = null;
                     }
                 }
             }
@@ -202,6 +208,40 @@ namespace Project.MVCUI.Areas.Responder.Controllers
                 if (answerResult != null) return StatusCode(StatusCodes.Status500InternalServerError, new { message = answerResult });
             }
 
+
+            return Ok(new { message = "Tammamdır babba" });
+        }
+
+        
+        public async Task<IActionResult> CalculateSurvey(int surveyId)
+        {
+            List<Question> questions = await _questionManager.GetQuestionsAndAnswersWithGroupBySurveyIdAsync(surveyId).Result.ToListAsync();
+
+            int score = 0;
+
+            var (error, appUser) = await _appUserManager.FindByNameViaIdentity(User.Identity!.Name!);
+
+            foreach (Question item in questions)
+            {
+                foreach (Answer element in item.Answers)
+                {
+                    if (await _appUserAnswerManager.AnyAsync(x => x.AnswerId == element.Id && x.AppUserId == appUser!.Id && x.Status != DataStatus.Deleted))
+                    {
+                        score += item.Group.Score;
+                    }
+                }               
+            }
+
+            if(score > 0)
+            {                
+                AppUserSurvey? appUserSurvey = await _appUserSurveyManager.Where(x => x.AppUserId == appUser!.Id && x.SurveyId == surveyId && x.Status != DataStatus.Deleted).FirstOrDefaultAsync();
+                if (appUserSurvey == null) return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Kullanıcıya bağlı anket bulunamadı" });
+
+                appUserSurvey.Score = score;
+
+                string? surveyError = await _appUserSurveyManager.UpdateAsync(appUserSurvey);
+                if (surveyError != null) return StatusCode(StatusCodes.Status500InternalServerError, new { message = surveyError });
+            }
 
             return Ok(new { message = "Tammamdır babba" });
         }
