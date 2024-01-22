@@ -13,7 +13,30 @@
             <h3>Analiz</h3>
         </div>
 
-        <div>
+
+        <div class="text-center mb-5">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">Grup Adı</th>
+                        <th class="text-center">Grup Puanı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (GroupViewModel item in Model)
+                    {
+                        <tr class="align-middle">
+                            <td class="text-center text-primary">@item.Code</td>
+                            <td class="text-center text-primary">@item.Score Puan</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="mt-5">
             <h5 class="text-center text-success">Gruplara göre soruların dağılımı</h5>
             <canvas id="myChart"></canvas>
             <canvas id="myChart2" class="mt-5"></canvas>
@@ -38,7 +61,7 @@
             data: {
                 labels: groupCodes,
                 datasets: [{
-                    label: 'Sayımı kapat',
+                    label: 'Adet',
                     data: groupCodeCount,
                     borderWidth: 1
                 }]
