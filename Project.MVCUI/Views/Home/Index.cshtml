@@ -2,7 +2,425 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="d-flex justify-content-center">
+    <div class="painting">
+        <div class="hair-container">
+            <div class="hair hair-1">
+            </div>
+            <div class="hair hair-2">
+            </div>
+            <div class="hair hair-3">
+            </div>
+            <div class="hair hair-4">
+            </div>
+            <div class="hair hair-5">
+            </div>
+            <div class="hair hair-6">
+            </div>
+            <div class="hair hair-7">
+            </div>
+            <div class="hair hair-8">
+            </div>
+            <div class="hair hair-9">
+            </div>
+            <div class="hair hair-10">
+            </div>
+            <div class="hair hair-11">
+            </div>
+            <!--
+                       <div class="hair hair-12">
+                      </div>
+            -->
+
+        </div>
+        <div class="face">
+            <div class="forehead-line forehead-line--top">
+            </div>
+            <div class="forehead-line forehead-line--bottom">
+            </div>
+            <div class="unibrow">
+            </div>
+            <div class="eyes">
+                <div class="eye eye--left">
+                    <div class="eyelid eyelid--left">
+                        <div class="pupil pupil--left">
+                        </div>
+                    </div>
+                </div>
+                <div class="eye eye--right">
+                    <div class="eyelid eyelid--left">
+                        <div class="pupil pupil--right">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mid-face">
+                <div class="eyebag eyebag--left">
+                </div>
+                <div class="nose">
+                </div>
+                <div class="eyebag eyebag--right">
+                </div>
+            </div>
+            <div class="lower-face">
+                <div class="wrinkle wrinkle--left">
+                </div>
+                <div class="frown">
+                </div>
+                <div class="wrinkle wrinkle--right">
+                </div>
+                <div class="spit">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+ 
+<!-- <div class="triangle">
+</div>-->
+
+
+
+@section Css{
+
+    <style>
+
+       
+
+        .painting {
+            height: 500px;
+            width: 500px;
+            /*  border: 2px solid gray; */
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+            .painting div {
+                /*  border: 1px dotted orange; */
+            }
+
+        :root {
+            --hair: #AAE4FE;
+            --skin: #E4D2C5;
+            --spit: #C8E7B8;
+            --coat: white;
+            --shirt: #90E8E7;
+            --eyes: black;
+        }
+
+        .face {
+            height: 300px;
+            width: 180px;
+            border-radius: 45%;
+            margin-top: 15%;
+            left: 33%;
+            background-color: var(--skin);
+            position: relative;
+            z-index: 1;
+            border: 1.5px solid black;
+        }
+
+        .forehead-line--top {
+            border-bottom-color: black;
+            width: 30px;
+            position: relative;
+            top: 5%;
+            left: 40%;
+            border-width: 1.5px;
+            border-style: solid;
+            height: 20px;
+            border-radius: 30%;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            transform: rotate(-10deg);
+        }
+
+        .forehead-line--bottom {
+            border-bottom-color: black;
+            width: 60px;
+            position: relative;
+            top: 0.5%;
+            left: 32%;
+            border-style: solid;
+            border-width: 1.5px;
+            height: 20px;
+            border-radius: 30%;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            transform: rotate(-11deg);
+        }
+
+        .unibrow {
+            border: 2px solid black;
+            width: 100px;
+            left: 20%;
+            top: 23%;
+            position: absolute;
+            height: 7px;
+            background-color: var(--hair);
+            transform: rotate(-5deg);
+            border-radius: 9px 8px 20px 8px;
+        }
+
+        .eye {
+            height: 60px;
+            width: 60px;
+            border-width: 1.5px;
+            border-style: solid;
+            border-top-color: transparent;
+            border-left-color: black;
+            border-right-color: black;
+            border-bottom-color: black;
+            border-radius: 50%;
+            background-color: transparent;
+            z-index: 3;
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .eye--left {
+            position: absolute;
+            top: 30%;
+            left: 13%;
+        }
+
+        .eye--right {
+            position: absolute;
+            top: 30%;
+            left: 53%;
+        }
+
+        .eyelid {
+            background-color: white;
+            border: 1.5px solid black;
+            height: 60%;
+            width: 110%;
+            position: relative;
+            top: 38%;
+            left: -8%;
+            border-radius: 50% 50% 50% 50%;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .pupil {
+            background-color: black;
+            top: -2%;
+            position: absolute;
+            width: 10px;
+            border-radius: 50%;
+            left: 44%;
+            height: 10px;
+            z-index: 1;
+        }
+
+        .eyebag {
+            width: 50px;
+            height: 30px;
+            border-style: solid;
+            border-width: 1.5px;
+            z-index: 3;
+            border-radius: 50%;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-right-color: transparent;
+        }
+
+        .eyebag--left {
+            top: 44%;
+            position: absolute;
+            left: 17%;
+            transform: rotate(-5deg);
+        }
+
+        .eyebag--right {
+            left: 55%;
+            top: 44%;
+            position: absolute;
+            transform: rotate(5deg);
+        }
+
+        .nose {
+            border-style: solid;
+            width: 10px;
+            height: 35px;
+            border-width: 2px;
+            border-radius: 40%;
+            border-top-color: transparent;
+            position: absolute;
+            top: 50%;
+            left: 47%;
+        }
+
+        .frown {
+            width: 90px;
+            border-style: solid;
+            border-width: 1.5px;
+            height: 30px;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            border-radius: 40%;
+            position: absolute;
+            top: 73%;
+            left: 27%;
+            transform: rotate(-7deg);
+        }
+
+        .wrinkle {
+            width: 30px;
+            height: 33px;
+            border-width: 1.5px;
+            border-style: solid;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .wrinkle--left {
+            border-right-color: transparent;
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+            top: 70%;
+            left: 22%;
+            transform: rotate(-8deg);
+        }
+
+        .wrinkle--right {
+            border-left-color: transparent;
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+            top: 68%;
+            left: 64%;
+            transform: rotate(8deg);
+        }
+
+        .hair-container {
+            width: 500px;
+            height: 500px;
+            z-index: 0;
+            position: absolute;
+        }
+
+        .hair {
+            z-index: 0;
+            position: absolute;
+            height: 0;
+            width: 0;
+            border-bottom-color: var(--hair);
+            border-left-color: transparent;
+            border-right-color: transparent;
+            border-top-color: transparent;
+            border-style: solid;
+        }
+
+        .hair-1 {
+            left: 40.5%;
+            margin-top: 0px;
+            padding-bottom: 0;
+            border-bottom-width: 100px;
+            border-left-width: 50px;
+            border-right-width: 50px;
+        }
+
+        .hair-2 {
+            left: 24%;
+            margin-top: 30px;
+            padding-bottom: 0;
+            border-bottom-width: 100px;
+            border-left-width: 50px;
+            border-right-width: 50px;
+            transform: rotate(-45deg);
+        }
+
+        .hair-3 {
+            left: 57.5%;
+            margin-top: 30px;
+            padding-bottom: 0;
+            border-bottom-width: 100px;
+            border-left-width: 50px;
+            border-right-width: 50px;
+            transform: rotate(43deg);
+        }
+
+        .hair-4 {
+            left: 67%;
+            margin-top: 100px;
+            padding-bottom: 0;
+            border-bottom-width: 100px;
+            border-left-width: 50px;
+            border-right-width: 50px;
+            transform: rotate(78deg);
+        }
+
+        .hair-5 {
+            left: 18%;
+            margin-top: 100px;
+            padding-bottom: 0;
+            border-bottom-width: 100px;
+            border-left-width: 50px;
+            border-right-width: 50px;
+            transform: rotate(-67deg);
+        }
+
+        .hair-6 {
+            left: 22.5%;
+            margin-top: 200px;
+            padding-bottom: 0;
+            border-bottom-width: 50px;
+            border-left-width: 30px;
+            border-right-width: 30px;
+            transform: rotate(-100deg);
+        }
+
+        .hair-7 {
+            left: 68%;
+            margin-top: 200px;
+            padding-bottom: 0;
+            border-bottom-width: 50px;
+            border-left-width: 30px;
+            border-right-width: 30px;
+            transform: rotate(96deg);
+        }
+
+        .hair-8 {
+            left: 27%;
+            margin-top: 235px;
+            border-bottom-width: 50px;
+            border-left-width: 30px;
+            border-right-width: 30px;
+            transform: rotate(10deg);
+        }
+
+        .hair-9 {
+            left: 64%;
+            margin-top: 235px;
+            border-bottom-width: 50px;
+            border-left-width: 30px;
+            border-right-width: 30px;
+            transform: rotate(-14deg);
+        }
+
+        .hair-10 {
+            left: 29%;
+            margin-top: 268px;
+            border-bottom-width: 50px;
+            border-left-width: 30px;
+            border-right-width: 30px;
+            transform: rotate(-10deg);
+        }
+
+        .hair-11 {
+            left: 62%;
+            margin-top: 268px;
+            border-bottom-width: 50px;
+            border-left-width: 30px;
+            border-right-width: 30px;
+            transform: rotate(8deg);
+        }
+
+    </style>
+
+}
