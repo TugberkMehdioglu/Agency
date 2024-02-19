@@ -29,6 +29,11 @@ puanlama isteniyor.
 ---
 <br>
 
+> [!NOTE]
+> Architecture : &nbsp; Onion Architecture <br> 
+> Tech Stack : &nbsp; .Net6, MVC, MsSql, EntityFrameworkCore, Bootstrap5, AutoMapper, Js, JQuery, Css, Html <br>
+> Migration dosyası oluşturulmuştur, update-database ile db kurabilirsiniz.
+
 > [!TIP]
 > Creator için: <br> Email => creator@gmail.com   Şifre => Password12*
 > <br><br>
@@ -36,12 +41,6 @@ puanlama isteniyor.
 > <br><br>
 > Analyzer için: <br> Email => analyzer@gmail.com  Şifre => Password12*
 
-<br>
 
-## Tech Stack: .Net6, MsSql, EntityFrameworkCore, Bootstrap5
-
-
-
- >   Migration dosyası oluşturulmuştur, update-database ile db kurabilirsiniz.
 
 
